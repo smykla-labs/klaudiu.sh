@@ -3,7 +3,7 @@
 # - Auto-stop when idle (pay only when used)
 # - Smallest VM size (256MB shared CPU)
 app = "klaudiu-sh"
-primary_region = "iad"
+primary_region = "fra"
 
 [build]
   dockerfile = "Dockerfile"
