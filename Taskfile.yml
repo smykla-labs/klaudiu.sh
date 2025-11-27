@@ -1,0 +1,41 @@
+version: "3"
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+
+  build:
+    desc: Build the redirect binary
+    cmds:
+      - mise exec -- go build -o bin/redirect ./cmd/redirect
+
+  test:
+    desc: Run tests
+    cmds:
+      - mise exec -- go test -v -race ./...
+
+  lint:
+    desc: Run linter
+    cmds:
+      - mise exec -- golangci-lint run
+
+  fmt:
+    desc: Format code
+    cmds:
+      - mise exec -- go fmt ./...
+
+  check:
+    desc: Run all checks (lint + test)
+    deps: [lint, test]
+
+  run:
+    desc: Run the redirect service locally
+    cmds:
+      - mise exec -- go run ./cmd/redirect
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf bin/
