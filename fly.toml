@@ -1,3 +1,7 @@
+# Minimal cost configuration:
+# - Single machine only (no HA)
+# - Auto-stop when idle (pay only when used)
+# - Smallest VM size (256MB shared CPU)
 app = "klaudiu-sh"
 primary_region = "iad"
 
