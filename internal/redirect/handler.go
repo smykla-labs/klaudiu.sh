@@ -9,10 +9,10 @@ import (
 
 const (
 	// GitHubDocsBase is the base URL for klaudiush error documentation on GitHub.
-	GitHubDocsBase = "https://github.com/smykla-labs/klaudiush/blob/main/docs/errors"
+	GitHubDocsBase = "https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors"
 
 	// HomeURL is the URL for the klaudiush project home page.
-	HomeURL = "https://github.com/smykla-labs/klaudiush"
+	HomeURL = "https://github.com/smykla-skalski/klaudiush"
 )
 
 var errorCodePattern = regexp.MustCompile(`^(GIT|FILE|SEC)\d{3}$`)

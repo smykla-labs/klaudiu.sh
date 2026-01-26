@@ -1,6 +1,6 @@
 # klaudiu.sh
 
-Error documentation and redirect service for [klaudiush](https://github.com/smykla-labs/klaudiush).
+Error documentation and redirect service for [klaudiush](https://github.com/smykla-skalski/klaudiush).
 
 ## Overview
 
@@ -14,9 +14,9 @@ This service powers the `https://klaudiu.sh` domain, providing:
 | URL                          | Redirects To                                                                            |
 |:-----------------------------|:----------------------------------------------------------------------------------------|
 | `https://klaudiu.sh/`        | klaudiush project homepage                                                              |
-| `https://klaudiu.sh/GIT001`  | [GIT001.md](https://github.com/smykla-labs/klaudiush/blob/main/docs/errors/GIT001.md)   |
-| `https://klaudiu.sh/FILE001` | [FILE001.md](https://github.com/smykla-labs/klaudiush/blob/main/docs/errors/FILE001.md) |
-| `https://klaudiu.sh/SEC001`  | [SEC001.md](https://github.com/smykla-labs/klaudiush/blob/main/docs/errors/SEC001.md)   |
+| `https://klaudiu.sh/GIT001`  | [GIT001.md](https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/GIT001.md)   |
+| `https://klaudiu.sh/FILE001` | [FILE001.md](https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/FILE001.md) |
+| `https://klaudiu.sh/SEC001`  | [SEC001.md](https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/SEC001.md)   |
 
 Supported prefixes: `GIT`, `FILE`, `SEC` (case-insensitive)
 

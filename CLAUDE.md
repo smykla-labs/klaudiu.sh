@@ -31,10 +31,10 @@ Simple HTTP redirect service:
 
 | Path Pattern | Destination                                                                 |
 |:-------------|:----------------------------------------------------------------------------|
-| `/`          | `https://github.com/smykla-labs/klaudiush`                                  |
-| `/GIT001`    | `https://github.com/smykla-labs/klaudiush/blob/main/docs/errors/GIT001.md`  |
-| `/FILE001`   | `https://github.com/smykla-labs/klaudiush/blob/main/docs/errors/FILE001.md` |
-| `/SEC001`    | `https://github.com/smykla-labs/klaudiush/blob/main/docs/errors/SEC001.md`  |
+| `/`          | `https://github.com/smykla-skalski/klaudiush`                                  |
+| `/GIT001`    | `https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/GIT001.md`  |
+| `/FILE001`   | `https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/FILE001.md` |
+| `/SEC001`    | `https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/SEC001.md`  |
 | Other        | 404 Not Found                                                               |
 
 Supported error code prefixes: `GIT`, `FILE`, `SEC` (case-insensitive, normalized to uppercase).

@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/smykla-labs/klaudiu.sh/internal/redirect"
+	"github.com/smykla-skalski/klaudiu.sh/internal/redirect"
 )
 
 const (
