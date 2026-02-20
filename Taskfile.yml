@@ -52,6 +52,11 @@ tasks:
     cmds:
       - pnpm format
 
+  og:
+    desc: Regenerate OG image
+    cmds:
+      - node scripts/generate-og.mjs
+
   clean:
     desc: Clean build artifacts
     cmds:
