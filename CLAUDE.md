@@ -50,22 +50,32 @@ SvelteKit app with adapter-node, deployed on fly.io.
 | Path               | Result                                           |
 |:-------------------|:-------------------------------------------------|
 | `/`                | Project landing page                             |
-| `/docs/`           | Documentation hub                                |
-| `/docs/rules`      | Dynamic rules guide                              |
-| `/docs/backup`     | Backup system guide                              |
-| `/docs/plugins`    | Plugin development guide                         |
-| `/docs/sessions`   | Session tracking guide                           |
-| `/docs/exceptions` | Exception workflow guide                         |
-| `/docs/changelog`  | Changelog (from submodule CHANGELOG.md)          |
-| `/docs/adr/`       | ADR listing                                      |
-| `/docs/adr/0001`   | Individual ADR page                              |
-| `/e/`              | Error docs listing                               |
-| `/e/GIT001`        | Renders GIT001.md from submodule                 |
-| `/e/git001`        | Same (case-insensitive, normalized to uppercase) |
-| `/e/INVALID001`    | 404 - invalid prefix                             |
-| `/anything-else`   | 404                                              |
+| `/docs/`                     | Documentation hub (grouped sections)             |
+| `/docs/getting-started`      | Getting started guide                            |
+| `/docs/installation`         | Installation guide                               |
+| `/docs/rules`                | Dynamic rules guide                              |
+| `/docs/backup`               | Backup system guide                              |
+| `/docs/plugins`              | Plugin development guide                         |
+| `/docs/sessions`             | Session tracking guide                           |
+| `/docs/exceptions`           | Exception workflow guide                         |
+| `/docs/cli`                  | CLI reference                                    |
+| `/docs/configuration`        | Configuration guide                              |
+| `/docs/environment-variables`| Environment variables reference                  |
+| `/docs/troubleshooting`      | Troubleshooting guide                            |
+| `/docs/faq`                  | FAQ                                              |
+| `/docs/security`             | Security guide                                   |
+| `/docs/architecture`         | Architecture overview                            |
+| `/docs/migration`            | Migration guide                                  |
+| `/docs/changelog`            | Changelog (from submodule CHANGELOG.md)          |
+| `/docs/adr/`                 | ADR listing                                      |
+| `/docs/adr/0001`             | Individual ADR page                              |
+| `/e/`                        | Error docs listing                               |
+| `/e/GIT001`                  | Renders GIT001.md from submodule                 |
+| `/e/git001`                  | Same (case-insensitive, normalized to uppercase) |
+| `/e/INVALID001`              | 404 - invalid prefix                             |
+| `/anything-else`             | 404                                              |
 
-Supported prefixes: `GIT`, `FILE`, `SEC` (pattern: `^(GIT|FILE|SEC)\d{3}$`)
+Supported prefixes: `GIT`, `FILE`, `SEC`, `SHELL`, `GH`, `PLUG`, `SESS` (pattern: `^(GIT|FILE|SEC|SHELL|GH|PLUG|SESS)\d{3}$`)
 
 ## Stack
 

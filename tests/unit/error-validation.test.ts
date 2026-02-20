@@ -23,6 +23,22 @@ describe('isValidErrorCode', () => {
 		expect(isValidErrorCode('SEC001')).toBe(true);
 	});
 
+	it('accepts SHELL001', () => {
+		expect(isValidErrorCode('SHELL001')).toBe(true);
+	});
+
+	it('accepts GH001', () => {
+		expect(isValidErrorCode('GH001')).toBe(true);
+	});
+
+	it('accepts PLUG001', () => {
+		expect(isValidErrorCode('PLUG001')).toBe(true);
+	});
+
+	it('accepts SESS001', () => {
+		expect(isValidErrorCode('SESS001')).toBe(true);
+	});
+
 	it('accepts GIT016', () => {
 		expect(isValidErrorCode('GIT016')).toBe(true);
 	});
@@ -77,6 +93,22 @@ describe('parseCategory', () => {
 
 	it('parses SEC category', () => {
 		expect(parseCategory('SEC001')).toBe('SEC');
+	});
+
+	it('parses SHELL category', () => {
+		expect(parseCategory('SHELL001')).toBe('SHELL');
+	});
+
+	it('parses GH category', () => {
+		expect(parseCategory('GH001')).toBe('GH');
+	});
+
+	it('parses PLUG category', () => {
+		expect(parseCategory('PLUG001')).toBe('PLUG');
+	});
+
+	it('parses SESS category', () => {
+		expect(parseCategory('SESS001')).toBe('SESS');
 	});
 
 	it('handles lowercase input', () => {

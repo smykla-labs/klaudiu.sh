@@ -82,14 +82,14 @@ export const guides: GuideInfo[] = [
 		title: 'Environment variables',
 		subtitle: 'Every KLAUDIUSH_ var and standard vars',
 		icon: 'Variable',
-		description: 'All environment variables that affect klaudiush behavior. KLAUDIUSH_ prefixed and standard vars.'
+		description: 'KLAUDIUSH_ prefixed vars, standard vars, value types, precedence.'
 	},
 	{
 		slug: 'troubleshooting',
 		title: 'Troubleshooting',
 		subtitle: 'Common issues and the doctor command',
 		icon: 'Wrench',
-		description: 'Fixes for common problems, doctor command diagnostics, crash dump analysis.'
+		description: 'Doctor command, debug logging, crash dumps, common fixes.'
 	},
 	{
 		slug: 'faq',

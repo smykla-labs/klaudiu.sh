@@ -114,7 +114,7 @@
 
 <div class="hero-bg" aria-hidden="true">
 	<svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-		{#each lines as line}
+		{#each lines as line (line.d)}
 			<path d={line.d} stroke={line.color} stroke-width={line.width} opacity={line.opacity} />
 		{/each}
 	</svg>

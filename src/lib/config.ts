@@ -4,7 +4,7 @@ export const siteConfig = {
 	github: 'https://github.com/smykla-skalski/klaudiush'
 } as const;
 
-export type ErrorCategory = 'GIT' | 'FILE' | 'SEC';
+export type ErrorCategory = 'GIT' | 'FILE' | 'SEC' | 'SHELL' | 'GH' | 'PLUG' | 'SESS';
 
 export interface CategoryInfo {
 	name: string;
@@ -27,5 +27,25 @@ export const categories: CategoryInfo[] = [
 		name: 'Security',
 		prefix: 'SEC',
 		description: 'Secret detection and security errors'
+	},
+	{
+		name: 'Shell',
+		prefix: 'SHELL',
+		description: 'Shell command validation errors'
+	},
+	{
+		name: 'GitHub',
+		prefix: 'GH',
+		description: 'GitHub CLI validation errors'
+	},
+	{
+		name: 'Plugin',
+		prefix: 'PLUG',
+		description: 'Plugin security errors'
+	},
+	{
+		name: 'Session',
+		prefix: 'SESS',
+		description: 'Session tracking errors'
 	}
 ];

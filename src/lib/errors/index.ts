@@ -1,6 +1,6 @@
 import type { ErrorCategory } from '$lib/config';
 
-export const ERROR_CODE_PATTERN = /^(GIT|FILE|SEC)\d{3}$/;
+export const ERROR_CODE_PATTERN = /^(GIT|FILE|SEC|SHELL|GH|PLUG|SESS)\d{3}$/;
 
 export function isValidErrorCode(code: string): boolean {
 	return ERROR_CODE_PATTERN.test(code.toUpperCase());
@@ -8,7 +8,7 @@ export function isValidErrorCode(code: string): boolean {
 
 export function parseCategory(code: string): ErrorCategory | null {
 	const upper = code.toUpperCase();
-	const match = upper.match(/^(GIT|FILE|SEC)/);
+	const match = upper.match(/^(GIT|FILE|SEC|SHELL|GH|PLUG|SESS)/);
 	return match ? (match[1] as ErrorCategory) : null;
 }
 

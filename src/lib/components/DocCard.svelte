@@ -7,6 +7,16 @@
 		Puzzle,
 		Activity,
 		ShieldOff,
+		Rocket,
+		Download,
+		Terminal,
+		FileSliders,
+		Variable,
+		Wrench,
+		CircleHelp,
+		Shield,
+		Workflow,
+		ArrowUpCircle,
 		type IconProps
 	} from '@lucide/svelte';
 	import type { Component } from 'svelte';
@@ -22,7 +32,17 @@
 		Archive,
 		Puzzle,
 		Activity,
-		ShieldOff
+		ShieldOff,
+		Rocket,
+		Download,
+		Terminal,
+		FileSliders,
+		Variable,
+		Wrench,
+		CircleHelp,
+		Shield,
+		Workflow,
+		ArrowUpCircle
 	};
 
 	const Icon = $derived(iconMap[guide.icon]);

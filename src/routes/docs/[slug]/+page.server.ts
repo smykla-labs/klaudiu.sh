@@ -508,6 +508,607 @@ klaudiush debug exceptions
 # Include current rate limit counters
 klaudiush debug exceptions --state`
 		}
+	},
+	'getting-started': {
+		install: {
+			lang: 'bash',
+			code: `# macOS / Linux (Homebrew)
+brew install smykla-skalski/tap/klaudiush
+
+# Or use the install script
+curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh`
+		},
+		initGlobal: {
+			lang: 'bash',
+			code: `# Create global config with interactive prompts
+klaudiush init --global
+
+# Verify setup
+klaudiush doctor`
+		},
+		hookConfig: {
+			lang: 'json',
+			code: `{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": "klaudiush --hook-type PreToolUse" }]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [{ "type": "command", "command": "klaudiush --hook-type PreToolUse" }]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [{ "type": "command", "command": "klaudiush --hook-type PreToolUse" }]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [{ "type": "command", "command": "klaudiush --hook-type Notification" }]
+      }
+    ]
+  }
+}`
+		},
+		firstCommit: {
+			lang: 'bash',
+			code: `# Try a commit - klaudiush validates automatically
+git commit -sS -m "feat(api): add user endpoint"
+
+# If validation fails, you'll see the error code and fix hint
+# Example: [GIT001] Missing signoff flag. Add -sS to your commit command.`
+		}
+	},
+	installation: {
+		homebrew: {
+			lang: 'bash',
+			code: `brew install smykla-skalski/tap/klaudiush`
+		},
+		installScript: {
+			lang: 'bash',
+			code: `# Default install to ~/.local/bin
+curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh
+
+# Specific version
+curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh -s -- -v v1.18.0
+
+# Custom install directory
+curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh -s -- -b /usr/local/bin`
+		},
+		nix: {
+			lang: 'bash',
+			code: `# Run directly
+nix run github:smykla-skalski/klaudiush?dir=nix
+
+# Install to profile
+nix profile install github:smykla-skalski/klaudiush?dir=nix`
+		},
+		nixHomeManager: {
+			lang: 'nix',
+			code: `{
+  inputs.klaudiush.url = "github:smykla-skalski/klaudiush?dir=nix";
+
+  # In your home-manager config:
+  imports = [ inputs.klaudiush.homeManagerModules.default ];
+  programs.klaudiush.enable = true;
+}`
+		},
+		fromSource: {
+			lang: 'bash',
+			code: `git clone https://github.com/smykla-skalski/klaudiush.git
+cd klaudiush
+task build:prod
+# Binary installed to ~/.local/bin/klaudiush`
+		},
+		completion: {
+			lang: 'bash',
+			code: `# Bash
+klaudiush completion bash | sudo tee /usr/local/etc/bash_completion.d/klaudiush
+
+# Zsh
+klaudiush completion zsh | sudo tee /usr/local/share/zsh/site-functions/_klaudiush
+
+# Fish
+klaudiush completion fish > ~/.config/fish/completions/klaudiush.fish`
+		},
+		verify: {
+			lang: 'bash',
+			code: `klaudiush --version
+klaudiush doctor`
+		}
+	},
+	cli: {
+		rootFlags: {
+			lang: 'bash',
+			code: `klaudiush --hook-type PreToolUse    # Required: hook event type
+klaudiush --debug                   # Enable debug logging
+klaudiush --trace                   # Enable trace logging
+klaudiush --config ./custom.toml    # Custom project config path
+klaudiush --global-config ~/.config/klaudiush.toml
+klaudiush --disable commit,markdown # Disable specific validators
+klaudiush --no-color                # Disable colored output`
+		},
+		init: {
+			lang: 'bash',
+			code: `# Initialize project config (interactive)
+klaudiush init
+
+# Initialize global config
+klaudiush init --global
+
+# Overwrite existing config (creates backup first)
+klaudiush init --force
+
+# Non-interactive mode
+klaudiush init --no-tui`
+		},
+		validate: {
+			lang: 'bash',
+			code: `# Validate via hook (normal usage - called by Claude Code)
+echo '{"tool_name":"Bash","command":"git commit -m fix"}' | klaudiush --hook-type PreToolUse`
+		},
+		backup: {
+			lang: 'bash',
+			code: `klaudiush backup list                      # List all backups
+klaudiush backup list --global             # Global config backups only
+klaudiush backup list --json               # JSON output
+klaudiush backup create --tag "pre-refactor"  # Manual backup
+klaudiush backup restore abc123 --dry-run  # Preview restore
+klaudiush backup restore abc123            # Restore snapshot
+klaudiush backup delete abc123             # Delete snapshot
+klaudiush backup prune                     # Remove old backups
+klaudiush backup status                    # Show backup system status`
+		},
+		doctor: {
+			lang: 'bash',
+			code: `klaudiush doctor                    # Run all checks
+klaudiush doctor --verbose          # Detailed output
+klaudiush doctor --fix              # Auto-fix issues
+klaudiush doctor --category config  # Check specific category`
+		},
+		audit: {
+			lang: 'bash',
+			code: `klaudiush audit list                       # List all entries
+klaudiush audit list --error-code GIT019   # Filter by code
+klaudiush audit list --outcome allowed     # Filter by outcome
+klaudiush audit list --json                # JSON output
+klaudiush audit stats                      # Show statistics
+klaudiush audit cleanup                    # Remove old entries`
+		},
+		debug: {
+			lang: 'bash',
+			code: `klaudiush debug config                    # Show loaded config
+klaudiush debug config --validator git.commit  # Single validator
+klaudiush debug rules                     # Show validation rules
+klaudiush debug rules --validator git.push    # Rules for one validator
+klaudiush debug exceptions                # Show exception config
+klaudiush debug exceptions --state        # Include rate limit counters
+klaudiush debug crash list                # List crash dumps
+klaudiush debug crash view <id>           # View crash dump
+klaudiush debug crash clean               # Clean crash dumps
+klaudiush debug crash clean --dry-run     # Preview cleanup`
+		},
+		completion: {
+			lang: 'bash',
+			code: `klaudiush completion bash        # Generate bash completions
+klaudiush completion zsh         # Generate zsh completions
+klaudiush completion fish        # Generate fish completions
+klaudiush completion powershell  # Generate PowerShell completions`
+		},
+		version: {
+			lang: 'bash',
+			code: `$ klaudiush version
+klaudiush v1.20.0
+  commit:  a1b2c3d
+  built:   2026-02-20T10:00:00Z
+  go:      go1.24.0
+  os/arch: darwin/arm64`
+		}
+	},
+	configuration: {
+		fileLocations: {
+			lang: 'text',
+			code: `~/.klaudiush/config.toml          # Global config (all projects)
+.klaudiush/config.toml            # Project config (this repo)
+klaudiush.toml                    # Alternative project config location`
+		},
+		cliOverrides: {
+			lang: 'bash',
+			code: `klaudiush --config=./my-config.toml --hook-type PreToolUse
+klaudiush --disable=commit,markdown --hook-type PreToolUse
+klaudiush --global-config=~/.config/klaudiush.toml --hook-type PreToolUse`
+		},
+		envOverrides: {
+			lang: 'bash',
+			code: `KLAUDIUSH_VALIDATORS_GIT_COMMIT_ENABLED=false
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_MESSAGE_TITLE_MAX_LENGTH=72
+KLAUDIUSH_VALIDATORS_FILE_MARKDOWN_ENABLED=false
+KLAUDIUSH_USE_SDK_GIT=false`
+		},
+		fullConfig: {
+			lang: 'toml',
+			code: `[validators.git.commit]
+enabled = true
+required_flags = ["-s", "-S"]
+check_staging_area = true
+enable_message_validation = true
+
+[validators.git.commit.message]
+title_max_length = 50
+body_max_line_length = 72
+check_conventional_commits = true
+valid_types = ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"]
+require_scope = true
+
+[validators.git.push]
+enabled = true
+
+[validators.git.pr]
+enabled = true
+title_max_length = 50
+
+[validators.git.branch]
+enabled = true
+protected_branches = ["main", "master"]
+
+[validators.file.markdown]
+enabled = true
+timeout = "10s"
+
+[validators.file.shellscript]
+enabled = true
+timeout = "10s"
+
+[validators.file.terraform]
+enabled = true
+check_format = true
+use_tflint = true
+
+[validators.file.workflow]
+enabled = true
+enforce_digest_pinning = true
+
+[validators.shell.backtick]
+enabled = true
+check_all_commands = false
+
+[validators.notification.bell]
+enabled = true`
+		},
+		deepMerge: {
+			lang: 'toml',
+			code: `# Global: ~/.klaudiush/config.toml
+[validators.git.commit.message]
+title_max_length = 50
+require_scope = true
+
+# Project: .klaudiush/config.toml
+[validators.git.commit.message]
+title_max_length = 72
+
+# Result after merge:
+# title_max_length = 72  (project wins)
+# require_scope = true   (preserved from global)`
+		}
+	},
+	'environment-variables': {
+		gitVars: {
+			lang: 'bash',
+			code: `# Git Add
+KLAUDIUSH_VALIDATORS_GIT_ADD_ENABLED=true
+KLAUDIUSH_VALIDATORS_GIT_ADD_BLOCKED_PATTERNS="tmp/*,*.secret"
+
+# Git Commit
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_ENABLED=true
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_REQUIRED_FLAGS="-s,-S"
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_MESSAGE_TITLE_MAX_LENGTH=50
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_MESSAGE_BODY_MAX_LINE_LENGTH=72
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_MESSAGE_CHECK_CONVENTIONAL_COMMITS=true
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_MESSAGE_REQUIRE_SCOPE=true
+
+# Git Push
+KLAUDIUSH_VALIDATORS_GIT_PUSH_ENABLED=true
+
+# Git PR
+KLAUDIUSH_VALIDATORS_GIT_PR_ENABLED=true
+KLAUDIUSH_VALIDATORS_GIT_PR_TITLE_MAX_LENGTH=50
+
+# Git Branch
+KLAUDIUSH_VALIDATORS_GIT_BRANCH_ENABLED=true
+KLAUDIUSH_VALIDATORS_GIT_BRANCH_PROTECTED_BRANCHES="main,master"`
+		},
+		fileVars: {
+			lang: 'bash',
+			code: `KLAUDIUSH_VALIDATORS_FILE_MARKDOWN_ENABLED=true
+KLAUDIUSH_VALIDATORS_FILE_MARKDOWN_TIMEOUT=10s
+KLAUDIUSH_VALIDATORS_FILE_SHELLSCRIPT_ENABLED=true
+KLAUDIUSH_VALIDATORS_FILE_SHELLSCRIPT_TIMEOUT=10s
+KLAUDIUSH_VALIDATORS_FILE_TERRAFORM_ENABLED=true
+KLAUDIUSH_VALIDATORS_FILE_TERRAFORM_CHECK_FORMAT=true
+KLAUDIUSH_VALIDATORS_FILE_WORKFLOW_ENABLED=true
+KLAUDIUSH_VALIDATORS_FILE_WORKFLOW_ENFORCE_DIGEST_PINNING=true`
+		},
+		standardVars: {
+			lang: 'bash',
+			code: `NO_COLOR=1              # Disable colored output
+KLAUDIUSH_USE_SDK_GIT=true   # Use go-git SDK instead of CLI
+GH_TOKEN=...            # GitHub API token for workflow validator`
+		},
+		valueTypes: {
+			lang: 'bash',
+			code: `# Boolean values: true, 1, yes, on (or false, 0, no, off)
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_ENABLED=true
+
+# Duration values: 10s, 30s, 1m, 5m30s
+KLAUDIUSH_VALIDATORS_FILE_MARKDOWN_TIMEOUT=10s
+
+# String lists: comma-separated, no spaces
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_REQUIRED_FLAGS="-s,-S"
+KLAUDIUSH_VALIDATORS_GIT_BRANCH_PROTECTED_BRANCHES="main,master,develop"`
+		}
+	},
+	troubleshooting: {
+		doctorCommand: {
+			lang: 'bash',
+			code: `# Run all diagnostic checks
+klaudiush doctor
+
+# Detailed output
+klaudiush doctor --verbose
+
+# Auto-fix detected issues
+klaudiush doctor --fix
+
+# Check specific category
+klaudiush doctor --category config
+klaudiush doctor --category hook
+klaudiush doctor --category backup`
+		},
+		debugConfig: {
+			lang: 'bash',
+			code: `# See what config is loaded
+klaudiush debug config
+
+# Check specific validator
+klaudiush debug config --validator git.commit
+
+# View active rules
+klaudiush debug rules`
+		},
+		crashDumps: {
+			lang: 'bash',
+			code: `# List crash dumps
+klaudiush debug crash list
+
+# View a specific crash dump
+klaudiush debug crash view <id>
+
+# Clean old crash dumps
+klaudiush debug crash clean`
+		},
+		debugLogging: {
+			lang: 'bash',
+			code: `# Enable debug logging
+klaudiush --debug --hook-type PreToolUse
+
+# Enable trace logging (verbose)
+klaudiush --trace --hook-type PreToolUse
+
+# View logs
+tail -f ~/.claude/hooks/dispatcher.log`
+		},
+		hookCheck: {
+			lang: 'bash',
+			code: `# Verify hook is registered
+cat ~/.claude/settings.json | jq '.hooks'
+
+# Test hook manually
+echo '{"tool_name":"Bash","command":"git status"}' | klaudiush --hook-type PreToolUse`
+		}
+	},
+	faq: {
+		disableValidator: {
+			lang: 'bash',
+			code: `# CLI flag (highest precedence)
+klaudiush --disable=commit,markdown --hook-type PreToolUse
+
+# Environment variable
+KLAUDIUSH_VALIDATORS_GIT_COMMIT_ENABLED=false
+
+# Config file
+# [validators.git.commit]
+# enabled = false`
+		},
+		disableConfig: {
+			lang: 'toml',
+			code: `[validators.git.commit]
+enabled = false`
+		},
+		exceptionUsage: {
+			lang: 'bash',
+			code: `# Shell comment
+git push origin main  # EXC:GIT019:Emergency+hotfix
+
+# Environment variable
+KLACK="EXC:SEC001:Test+fixture" git commit -sS -m "msg"`
+		},
+		exceptionConfig: {
+			lang: 'toml',
+			code: `[exceptions]
+enabled = true
+
+[exceptions.policies.GIT019]
+enabled = true
+allow_exception = true
+require_reason = true`
+		},
+		completionSetup: {
+			lang: 'bash',
+			code: `klaudiush completion bash | sudo tee /usr/local/etc/bash_completion.d/klaudiush
+klaudiush completion zsh | sudo tee /usr/local/share/zsh/site-functions/_klaudiush
+klaudiush completion fish > ~/.config/fish/completions/klaudiush.fish`
+		}
+	},
+	security: {
+		secretPatterns: {
+			lang: 'text',
+			code: `AWS access keys          AKIA[0-9A-Z]{16}
+AWS secret keys          [0-9a-zA-Z/+]{40}
+GitHub tokens            ghp_/gho_/ghs_/ghu_/github_pat_ prefixed
+Private keys             BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY
+Connection strings       mongodb://, postgres://, mysql://, redis://
+API keys                 Stripe (sk_live_), Twilio, SendGrid, etc.`
+		},
+		gitleaksConfig: {
+			lang: 'toml',
+			code: `[validators.secrets]
+enabled = true
+use_gitleaks = true    # Optional: use gitleaks for extra coverage`
+		},
+		pluginSecurity: {
+			lang: 'toml',
+			code: `[[plugins.plugins]]
+name = "my-plugin"
+type = "exec"
+path = "~/.klaudiush/plugins/my-plugin.sh"
+timeout = "5s"    # Execution timeout
+
+[plugins.plugins.predicate]
+event_types = ["PreToolUse"]
+tool_types = ["Bash"]`
+		},
+		reporting: {
+			lang: 'text',
+			code: `Contact: bartek@smykla.com
+
+Do NOT report vulnerabilities via public GitHub issues.
+
+Timeline:
+  1. Acknowledgment within 48 hours
+  2. Investigation and fix development
+  3. Release with fix
+  4. Coordinated public disclosure`
+		}
+	},
+	architecture: {
+		flow: {
+			lang: 'text',
+			code: `Claude Code JSON \u2192 CLI \u2192 JSON Parser \u2192 Dispatcher \u2192 Registry \u2192 Validators \u2192 Result
+
+1. Claude Code sends hook event as JSON to stdin
+2. CLI parses flags, loads config, initializes subsystems
+3. JSON parser converts event to hook.Context
+4. Dispatcher checks session state, runs matched validators
+5. Registry matches validators via predicates
+6. Validators return Pass/Fail/Warn with error codes
+7. JSON response written to stdout`
+		},
+		directoryLayout: {
+			lang: 'text',
+			code: `klaudiush/
+\u251c\u2500\u2500 cmd/klaudiush/          # CLI entry point
+\u251c\u2500\u2500 pkg/
+\u2502   \u251c\u2500\u2500 hook/               # Event types, Context
+\u2502   \u251c\u2500\u2500 parser/             # Bash/Git/command parsing
+\u2502   \u251c\u2500\u2500 config/             # Configuration models
+\u2502   \u2514\u2500\u2500 logger/             # Structured logging
+\u2514\u2500\u2500 internal/
+    \u251c\u2500\u2500 dispatcher/         # Validation orchestration
+    \u251c\u2500\u2500 validator/          # Validator interface, registry
+    \u251c\u2500\u2500 validators/         # All validator implementations
+    \u2502   \u251c\u2500\u2500 git/            # Git-specific validators
+    \u2502   \u251c\u2500\u2500 file/           # File format validators
+    \u2502   \u251c\u2500\u2500 secrets/        # Secret detection
+    \u2502   \u251c\u2500\u2500 shell/          # Shell command validators
+    \u2502   \u2514\u2500\u2500 notification/   # Notification validators
+    \u251c\u2500\u2500 rules/              # Dynamic validation rules
+    \u251c\u2500\u2500 exceptions/         # Exception workflow
+    \u251c\u2500\u2500 session/            # Session tracking
+    \u251c\u2500\u2500 config/             # Configuration loading
+    \u251c\u2500\u2500 doctor/             # Diagnostic system
+    \u2514\u2500\u2500 backup/             # Config backup system`
+		},
+		hookOutput: {
+			lang: 'json',
+			code: `{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "[GIT001] Missing signoff flag. Add -sS to your commit command.",
+    "additionalContext": "..."
+  },
+  "systemMessage": "..."
+}`
+		},
+		predicates: {
+			lang: 'text',
+			code: `Predicate types:
+  EventTypeIs     Match hook event (PreToolUse, PostToolUse, Notification)
+  ToolTypeIs       Match tool name (Bash, Write, Edit)
+  CommandContains  Match command substring
+  FileExtensionIs  Match file extension (.md, .tf, .go)
+  FilePathMatches  Match file path pattern
+
+Composable:
+  And(p1, p2)     Both must match
+  Or(p1, p2)      Either matches
+  Not(p)          Inverts match`
+		}
+	},
+	migration: {
+		jsonMigration: {
+			lang: 'text',
+			code: `Before (v1.17 and earlier):
+  Block: exit code 2, formatted text to stderr
+  Allow: exit code 0
+
+After (v1.18+):
+  Block: exit 0, JSON stdout with permissionDecision: "deny"
+  Allow: exit 0, JSON stdout with permissionDecision: "allow"
+  Crash: exit 3 (panic recovery)`
+		},
+		jsonOutput: {
+			lang: 'json',
+			code: `{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "[GIT001] Message for the model",
+    "additionalContext": "Extra context"
+  },
+  "systemMessage": "Message for the user"
+}`
+		},
+		upgradeSteps: {
+			lang: 'bash',
+			code: `# 1. Update klaudiush
+brew upgrade klaudiush
+# or
+curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh
+
+# 2. Verify version
+klaudiush version
+
+# 3. Run doctor to check setup
+klaudiush doctor
+
+# 4. Test validation still works
+echo '{"tool_name":"Bash","command":"git commit -m fix"}' | klaudiush --hook-type PreToolUse`
+		},
+		selfUpdate: {
+			lang: 'bash',
+			code: `# Check for updates
+klaudiush update --check
+
+# Update to latest
+klaudiush update
+
+# Update to specific version
+klaudiush update --version v1.20.0`
+		}
 	}
 };
 
