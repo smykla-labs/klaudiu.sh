@@ -412,9 +412,13 @@ description = "Exception for pushing to protected branches"`
 			lang: 'toml',
 			code: `[exceptions.rate_limit]
 enabled = true
-max_per_hour = 10
+max_per_hour = 10  # global, all codes combined
 max_per_day = 50
-state_file = "~/.klaudiush/exception_state.json"`
+
+# Per-code limits are set in the policy entry
+[exceptions.policies.GIT019]
+max_per_hour = 2
+max_per_day = 5`
 		},
 		auditCommands: {
 			lang: 'bash',
@@ -428,7 +432,10 @@ klaudiush audit list --error-code GIT019
 klaudiush audit list --outcome allowed
 
 # View statistics
-klaudiush audit stats`
+klaudiush audit stats
+
+# Remove old entries
+klaudiush audit cleanup`
 		},
 		rulesIntegration: {
 			lang: 'toml',
@@ -466,6 +473,40 @@ enabled = true
 require_reason = true
 valid_reasons = ["test fixture", "mock data", "example config"]
 description = "Allow secrets in test files"`
+		},
+		requireExplicitPolicy: {
+			lang: 'toml',
+			code: `# Without this, any error code can be bypassed by default
+[exceptions]
+require_explicit_policy = true
+
+# Only codes with an explicit policy entry can now be bypassed
+[exceptions.policies.GIT019]
+allow_exception = true
+require_reason = true`
+		},
+		tokenParsing: {
+			lang: 'bash',
+			code: [
+				'# Word boundary required - token must start after whitespace',
+				'git push origin main  # EXC:GIT019:reason        <- matches',
+				'git push origin main  # NOEXC:GIT019:reason       <- no match',
+				'',
+				'# Variable expansion is rejected - only literal strings work',
+				'KLACK="EXC:${CODE}:reason" git push    # <- token not found',
+				'KLACK="EXC:$(echo GIT019):reason" git push  # <- token not found',
+				'',
+				'# When both are present, env var wins',
+				'KLACK="EXC:GIT019:Env+reason" git push  # EXC:GIT019:Comment+reason'
+			].join('\n')
+		},
+		debugCommands: {
+			lang: 'bash',
+			code: `# Show exception policies for current project
+klaudiush debug exceptions
+
+# Include current rate limit counters
+klaudiush debug exceptions --state`
 		}
 	}
 };

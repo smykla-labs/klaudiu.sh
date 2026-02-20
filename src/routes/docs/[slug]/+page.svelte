@@ -52,10 +52,13 @@
 		exceptions: [
 			{ id: 'overview', label: 'Overview' },
 			{ id: 'quick-start', label: 'Quick start' },
+			{ id: 'how-it-works', label: 'How it works' },
 			{ id: 'token-format', label: 'Token format' },
 			{ id: 'policies', label: 'Policies' },
 			{ id: 'rate-limiting', label: 'Rate limiting' },
 			{ id: 'audit', label: 'Audit logging' },
+			{ id: 'debug', label: 'Debug commands' },
+			{ id: 'session-integration', label: 'Session integration' },
 			{ id: 'rules-integration', label: 'Rules integration' },
 			{ id: 'examples', label: 'Examples' }
 		]

@@ -12,9 +12,15 @@
 <section id="overview" class="space-y-3">
 	<h2 class="text-xl font-semibold">Overview</h2>
 	<p class="text-muted-foreground">
-		The exception workflow lets Claude Code bypass specific validation denials when an exception
-		policy exists, Claude includes an acknowledgment token, and rate limits haven't been exceeded.
-		Every exception is logged in a JSONL audit trail.
+		The exception workflow lets Claude Code bypass specific validation blocks with an explicit
+		acknowledgment token. When klaudiush blocks a command, adding an <code>EXC:</code> token
+		to the command overrides the block. Every attempt, allowed or denied, is logged to disk
+		before the result is returned. Rate limits and per-code policies apply.
+	</p>
+	<p class="text-muted-foreground">
+		By default, any error code can be bypassed if a valid token is provided. Set
+		<code>require_explicit_policy = true</code> to restrict bypasses to codes that have an
+		explicit policy entry.
 	</p>
 </section>
 
@@ -25,9 +31,31 @@
 	</p>
 	<CodeBlock html={codeSnippets.config} />
 	<p class="text-muted-foreground">
-		When Claude encounters a deny response, it can include a token to bypass the block:
+		When Claude encounters a block, it can add a token to bypass it:
 	</p>
 	<CodeBlock html={codeSnippets.usage} />
+</section>
+
+<section id="how-it-works" class="space-y-4">
+	<h2 class="text-xl font-semibold">How it works</h2>
+	<p class="text-muted-foreground">
+		When a validator returns a blocking error, the dispatcher runs the exception check before
+		returning the result to Claude Code:
+	</p>
+	<ol class="list-decimal space-y-2 pl-6 text-sm text-muted-foreground">
+		<li>Validator returns a blocking error with an error code (e.g., <code>GIT019</code>)</li>
+		<li>klaudiush scans the command for an exception token - env var first, then shell comment</li>
+		<li>Token error code must exactly match the blocking error code</li>
+		<li>Policy check: <code>allow_exception</code> must be true, reason rules must pass</li>
+		<li>Rate limit check: global and per-code limits both must pass</li>
+		<li>If all checks pass: block becomes a warning tagged <code>[BYPASSED]</code>, audit entry written</li>
+		<li>If any check fails: original block stands, audit entry written with denial reason</li>
+	</ol>
+	<Callout type="info">
+		<p>A successfully bypassed block becomes a non-blocking warning, so the session is not
+		poisoned. A failed bypass or missing token leaves the original block in place and the
+		session poisons as normal.</p>
+	</Callout>
 </section>
 
 <section id="token-format" class="space-y-4">
@@ -37,13 +65,30 @@
 	</p>
 	<h3 class="text-lg font-medium">Placement</h3>
 	<p class="text-muted-foreground">
-		Tokens can go in a shell comment (recommended) or an environment variable:
+		Tokens can go in a shell comment (recommended) or the <code>KLACK</code> environment
+		variable. When both are present, the env var takes priority.
 	</p>
 	<CodeBlock html={codeSnippets.tokenPlacement} />
 	<Callout type="info" title="URL encoding">
 		<p>Reasons must be URL-encoded: spaces become <code>+</code>, <code>#</code> becomes
 		<code>%23</code>, etc. This avoids shell parsing issues.</p>
 	</Callout>
+	<h3 class="text-lg font-medium">Parsing rules</h3>
+	<p class="text-muted-foreground">
+		Two constraints prevent accidental or injected matches:
+	</p>
+	<CodeBlock html={codeSnippets.tokenParsing} />
+	<ul class="list-disc space-y-2 pl-6 text-sm text-muted-foreground">
+		<li>
+			<strong>Word boundary</strong> - the token must start at a word boundary (after
+			whitespace or at the start of a comment). <code>NOEXC:GIT019:reason</code> does not
+			match because there is no whitespace before <code>EXC:</code>.
+		</li>
+		<li>
+			<strong>No variable expansion</strong> - only literal strings are accepted. Tokens
+			containing <code>$&#123;...&#125;</code> or <code>$(...)</code> are rejected entirely.
+		</li>
+	</ul>
 </section>
 
 <section id="policies" class="space-y-4">
@@ -65,35 +110,90 @@
 			<tbody class="text-muted-foreground">
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>allow_exception</code></td><td class="py-2 pr-4">true</td><td class="py-2">Allow exceptions for this code</td></tr>
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>require_reason</code></td><td class="py-2 pr-4">false</td><td class="py-2">Require justification</td></tr>
-				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>min_reason_length</code></td><td class="py-2 pr-4">10</td><td class="py-2">Minimum reason length</td></tr>
-				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>valid_reasons</code></td><td class="py-2 pr-4">[]</td><td class="py-2">Pre-approved reasons (case-insensitive)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>min_reason_length</code></td><td class="py-2 pr-4">10</td><td class="py-2">Minimum reason length in runes, not bytes</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>valid_reasons</code></td><td class="py-2 pr-4">[]</td><td class="py-2">Pre-approved reasons (exact match, case-insensitive)</td></tr>
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>max_per_hour</code></td><td class="py-2 pr-4">0</td><td class="py-2">Hourly limit (0 = unlimited)</td></tr>
 				<tr><td class="py-2 pr-4"><code>max_per_day</code></td><td class="py-2 pr-4">0</td><td class="py-2">Daily limit (0 = unlimited)</td></tr>
 			</tbody>
 		</table>
 	</div>
+
+	<h3 class="text-lg font-medium">Requiring explicit policies</h3>
+	<p class="text-muted-foreground">
+		By default, any error code can be bypassed as long as a valid token is provided. Set
+		<code>require_explicit_policy = true</code> in the <code>[exceptions]</code> block to
+		restrict bypasses to codes that have an explicit policy entry. Tokens for unconfigured
+		codes are denied.
+	</p>
+	<CodeBlock html={codeSnippets.requireExplicitPolicy} />
+
+	<h3 class="text-lg font-medium">Reason matching</h3>
+	<p class="text-muted-foreground">
+		When <code>valid_reasons</code> is set, the decoded reason must exactly match one of the
+		listed values (case-insensitive). Prefix matching is not used - <code>"Emergency hotfix
+		for prod"</code> does not satisfy approved reason <code>"Emergency hotfix"</code>.
+		Length is counted in runes, so CJK characters and emoji each count as one.
+	</p>
 </section>
 
 <section id="rate-limiting" class="space-y-4">
 	<h2 class="text-xl font-semibold">Rate limiting</h2>
 	<p class="text-muted-foreground">
 		Global and per-code rate limits cap how often exceptions can be used. Both must pass for
-		an exception to go through.
+		a bypass to succeed. Global limits apply across all error codes combined; per-code limits
+		are set in the policy entry.
 	</p>
 	<CodeBlock html={codeSnippets.rateLimits} />
 	<p class="text-muted-foreground">
-		Hourly windows reset on the hour, daily windows at midnight. State persists across restarts.
+		Hourly windows reset on the hour. Daily windows reset at local midnight, not UTC, so
+		limits turn over when the day changes in the user's timezone. Rate limit state is
+		per-project: each project gets its own counters at
+		<code>~/.klaudiush/exceptions/state_&lt;hash&gt;.json</code>, derived from the project
+		directory path. One project's exception usage does not affect another.
 	</p>
 </section>
 
 <section id="audit" class="space-y-4">
 	<h2 class="text-xl font-semibold">Audit logging</h2>
 	<p class="text-muted-foreground">
-		Every exception attempt - allowed or denied - is logged in JSONL format at
-		<code>~/.klaudiush/exception_audit.jsonl</code>. Entries include the error code, reason,
-		command, and whether the exception was allowed.
+		Every exception attempt - allowed or denied - is appended as a JSON line to
+		<code>~/.klaudiush/exception_audit.jsonl</code>. The audit log is global across all
+		projects. Entries are fsynced to disk before returning, so no bypass goes unrecorded
+		even if the process exits immediately after.
 	</p>
+	<p class="text-muted-foreground">Each entry includes:</p>
+	<ul class="list-disc space-y-1 pl-6 text-sm text-muted-foreground">
+		<li><code>timestamp</code>, <code>error_code</code>, <code>validator_name</code></li>
+		<li><code>allowed</code> (bool), <code>reason</code>, <code>denial_reason</code></li>
+		<li><code>source</code> - <code>"comment"</code> or <code>"env_var"</code></li>
+		<li><code>command</code> (truncated to 200 chars), <code>working_dir</code>, <code>repository</code></li>
+	</ul>
 	<CodeBlock html={codeSnippets.auditCommands} />
+	<p class="text-muted-foreground">
+		Audit log rotation is configured under <code>[exceptions.audit]</code>: <code>max_size_mb</code>,
+		<code>max_age_days</code>, and <code>max_backups</code> control when and how old log
+		files are rotated. <code>audit cleanup</code> manually removes entries older than
+		<code>max_age_days</code>.
+	</p>
+</section>
+
+<section id="debug" class="space-y-4">
+	<h2 class="text-xl font-semibold">Debug commands</h2>
+	<p class="text-muted-foreground">
+		Use <code>debug exceptions</code> to inspect the active policy configuration for the
+		current project. Add <code>--state</code> to also show current rate limit counters.
+	</p>
+	<CodeBlock html={codeSnippets.debugCommands} />
+</section>
+
+<section id="session-integration" class="space-y-3">
+	<h2 class="text-xl font-semibold">Session integration</h2>
+	<p class="text-muted-foreground">
+		When a bypass succeeds, the blocking error is converted to a non-blocking warning, so the
+		<a href="/docs/sessions" class="underline underline-offset-2 hover:text-foreground">session</a>
+		is not poisoned and Claude Code can continue. When a bypass is denied or no token is
+		present, the original block stands and the session poisons as normal.
+	</p>
 </section>
 
 <section id="rules-integration" class="space-y-4">
