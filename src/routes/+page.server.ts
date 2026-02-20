@@ -1,8 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { highlightCode } from '$lib/highlight.server';
 
-const brewSnippet = `brew tap smykla-skalski/tap
-brew install klaudiush`;
+const brewSnippet = `brew install smykla-skalski/tap/klaudiush`;
 
 const curlSnippet = `curl -fsSL https://klaudiu.sh/install | sh`;
 

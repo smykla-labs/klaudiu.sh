@@ -1,0 +1,91 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { guides } from '$lib/docs';
+
+	interface TocEntry {
+		id: string;
+		label: string;
+	}
+
+	interface Props {
+		toc?: TocEntry[];
+	}
+
+	let { toc = [] }: Props = $props();
+</script>
+
+<aside class="hidden w-56 shrink-0 lg:block">
+	<nav class="sticky top-8 space-y-6">
+		<div>
+			<p class="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+				Guides
+			</p>
+			<ul class="space-y-1">
+				{#each guides as guide (guide.slug)}
+					{@const active = $page.url.pathname === `/docs/${guide.slug}`}
+					<li>
+						<a
+							href="/docs/{guide.slug}"
+							class="block rounded-md px-2 py-1.5 text-sm transition-colors
+								{active
+								? 'bg-accent font-medium text-accent-foreground'
+								: 'text-muted-foreground hover:text-foreground'}"
+						>
+							{guide.title}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
+
+		<div>
+			<p class="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+				Other
+			</p>
+			<ul class="space-y-1">
+				<li>
+					<a
+						href="/docs/changelog"
+						class="block rounded-md px-2 py-1.5 text-sm transition-colors
+							{$page.url.pathname === '/docs/changelog'
+							? 'bg-accent font-medium text-accent-foreground'
+							: 'text-muted-foreground hover:text-foreground'}"
+					>
+						Changelog
+					</a>
+				</li>
+				<li>
+					<a
+						href="/docs/adr/"
+						class="block rounded-md px-2 py-1.5 text-sm transition-colors
+							{$page.url.pathname.startsWith('/docs/adr')
+							? 'bg-accent font-medium text-accent-foreground'
+							: 'text-muted-foreground hover:text-foreground'}"
+					>
+						ADRs
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		{#if toc.length > 0}
+			<div>
+				<p class="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+					On this page
+				</p>
+				<ul class="space-y-1">
+					{#each toc as entry (entry.id)}
+						<li>
+							<a
+								href="#{entry.id}"
+								class="block px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+							>
+								{entry.label}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+	</nav>
+</aside>

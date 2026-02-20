@@ -5,8 +5,8 @@ Guidance for Claude Code when working with this repository.
 ## Project overview
 
 `klaudiu.sh` is the website for klaudiush - a validation dispatcher for Claude Code hooks.
-Project landing page at `/`, error docs at `/e/`.
-Error doc markdown lives in the `klaudiush/` git submodule.
+Project landing page at `/`, error docs at `/e/`, documentation at `/docs/`.
+Error doc markdown lives in the `klaudiush/` git submodule. Changelog is read from `klaudiush/CHANGELOG.md`.
 
 ## Commands
 
@@ -34,20 +34,36 @@ SvelteKit app with adapter-node, deployed on fly.io.
 - `src/routes/e/[code]/+page.svelte` - Error doc page renderer
 - `src/lib/errors/index.ts` - Error code validation, parsing, markdown loading
 - `src/lib/config.ts` - Site metadata, category definitions
-- `src/lib/components/` - Shared components (Navbar, Footer, CategoryCard, etc.)
+- `src/routes/docs/+page.svelte` - Docs hub with guide cards and ADR list
+- `src/routes/docs/[slug]/+page.svelte` - Guide detail page (rules, backup, plugins, sessions, exceptions)
+- `src/routes/docs/[slug]/+page.server.ts` - Guide loader (validates slug, highlights code)
+- `src/routes/docs/changelog/` - Changelog (rendered from submodule CHANGELOG.md)
+- `src/routes/docs/adr/` - ADR listing and detail pages
+- `src/lib/docs/index.ts` - Guide and ADR registries
+- `src/lib/docs/content/` - Per-guide Svelte content components
+- `src/lib/components/` - Shared components (Navbar, Footer, CategoryCard, DocCard, etc.)
 - `src/lib/components/ui/` - shadcn-svelte generated components
-- `klaudiush/` - Git submodule with error doc markdown (docs/errors/)
+- `klaudiush/` - Git submodule with error doc markdown (docs/errors/) and CHANGELOG.md
 
-### Error code routing
+### Routing
 
-| Path             | Result                                           |
-|:-----------------|:-------------------------------------------------|
-| `/`              | Project landing page                             |
-| `/e/`            | Error docs listing                               |
-| `/e/GIT001`      | Renders GIT001.md from submodule                 |
-| `/e/git001`      | Same (case-insensitive, normalized to uppercase) |
-| `/e/INVALID001`  | 404 - invalid prefix                             |
-| `/anything-else` | 404                                              |
+| Path               | Result                                           |
+|:-------------------|:-------------------------------------------------|
+| `/`                | Project landing page                             |
+| `/docs/`           | Documentation hub                                |
+| `/docs/rules`      | Dynamic rules guide                              |
+| `/docs/backup`     | Backup system guide                              |
+| `/docs/plugins`    | Plugin development guide                         |
+| `/docs/sessions`   | Session tracking guide                           |
+| `/docs/exceptions` | Exception workflow guide                         |
+| `/docs/changelog`  | Changelog (from submodule CHANGELOG.md)          |
+| `/docs/adr/`       | ADR listing                                      |
+| `/docs/adr/0001`   | Individual ADR page                              |
+| `/e/`              | Error docs listing                               |
+| `/e/GIT001`        | Renders GIT001.md from submodule                 |
+| `/e/git001`        | Same (case-insensitive, normalized to uppercase) |
+| `/e/INVALID001`    | 404 - invalid prefix                             |
+| `/anything-else`   | 404                                              |
 
 Supported prefixes: `GIT`, `FILE`, `SEC` (pattern: `^(GIT|FILE|SEC)\d{3}$`)
 

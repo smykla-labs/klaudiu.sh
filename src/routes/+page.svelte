@@ -32,6 +32,7 @@
 			<Button variant="outline" href={siteConfig.github} target="_blank" rel="noopener noreferrer"
 				>GitHub</Button
 			>
+			<Button variant="outline" href="/docs/">Docs</Button>
 			<Button variant="outline" href="/e/">Error docs</Button>
 		</div>
 	</section>
@@ -180,20 +181,36 @@
 	</section>
 
 	<section class="flex justify-center">
-		<Card.Root class="w-full max-w-lg text-center">
-			<Card.Header>
-				<Card.Title>Error reference</Card.Title>
-				<Card.Description>
-					Browse all error codes with explanations and fix instructions.
-				</Card.Description>
-			</Card.Header>
-			<Card.Content>
-				<Button href="/e/" class="gap-2">
-					Browse errors
-					<ArrowRight class="h-4 w-4" />
-				</Button>
-			</Card.Content>
-		</Card.Root>
+		<div class="grid w-full max-w-2xl gap-4 sm:grid-cols-2">
+			<Card.Root class="text-center">
+				<Card.Header>
+					<Card.Title>Documentation</Card.Title>
+					<Card.Description>
+						Guides for rules, backups, plugins, sessions, and exceptions.
+					</Card.Description>
+				</Card.Header>
+				<Card.Content>
+					<Button href="/docs/" class="gap-2">
+						Browse docs
+						<ArrowRight class="h-4 w-4" />
+					</Button>
+				</Card.Content>
+			</Card.Root>
+			<Card.Root class="text-center">
+				<Card.Header>
+					<Card.Title>Error reference</Card.Title>
+					<Card.Description>
+						Browse all error codes with explanations and fix instructions.
+					</Card.Description>
+				</Card.Header>
+				<Card.Content>
+					<Button href="/e/" class="gap-2">
+						Browse errors
+						<ArrowRight class="h-4 w-4" />
+					</Button>
+				</Card.Content>
+			</Card.Root>
+		</div>
 	</section>
 </div>
 

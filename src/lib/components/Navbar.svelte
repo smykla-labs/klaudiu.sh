@@ -8,6 +8,7 @@
 	<div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
 		<a href="/" class="font-mono text-lg font-bold tracking-tight">{siteConfig.name}</a>
 		<div class="flex items-center gap-4">
+			<a href="/docs/" class="text-sm text-muted-foreground hover:text-foreground">Docs</a>
 			<a href="/e/" class="text-sm text-muted-foreground hover:text-foreground">Errors</a>
 			<Separator orientation="vertical" class="h-4" />
 			<a
