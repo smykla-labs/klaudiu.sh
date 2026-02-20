@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+@theme {
+	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		'Liberation Mono', 'Courier New', monospace;
+
+	/* stone palette */
+	--color-background: oklch(0.99 0 0);
+	--color-foreground: oklch(0.15 0.01 67);
+	--color-card: oklch(0.99 0 0);
+	--color-card-foreground: oklch(0.15 0.01 67);
+	--color-popover: oklch(0.99 0 0);
+	--color-popover-foreground: oklch(0.15 0.01 67);
+	--color-primary: oklch(0.22 0.01 67);
+	--color-primary-foreground: oklch(0.97 0 0);
+	--color-secondary: oklch(0.96 0.005 67);
+	--color-secondary-foreground: oklch(0.15 0.01 67);
+	--color-muted: oklch(0.96 0.005 67);
+	--color-muted-foreground: oklch(0.55 0.01 67);
+	--color-accent: oklch(0.96 0.005 67);
+	--color-accent-foreground: oklch(0.15 0.01 67);
+	--color-destructive: oklch(0.58 0.22 27);
+	--color-destructive-foreground: oklch(0.97 0 0);
+	--color-border: oklch(0.87 0.005 67);
+	--color-input: oklch(0.87 0.005 67);
+	--color-ring: oklch(0.55 0.01 67);
+
+	--radius-sm: 0.25rem;
+	--radius-md: calc(var(--radius-sm) + 0.125rem);
+	--radius-lg: calc(var(--radius-sm) + 0.25rem);
+	--radius-xl: calc(var(--radius-sm) + 0.5rem);
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}

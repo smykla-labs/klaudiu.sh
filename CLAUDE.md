@@ -2,42 +2,55 @@
 
 Guidance for Claude Code when working with this repository.
 
-## Project Overview
+## Project overview
 
-`klaudiu.sh` is the error documentation and redirect service for klaudiush.
-Currently serves as a URL shortener redirecting error codes to GitHub documentation.
-Future plans include hosting full documentation on this domain.
+`klaudiu.sh` is the error documentation site for klaudiush.
+Renders error code docs (GIT001, FILE001, SEC001, etc.) as styled pages using SvelteKit.
+Error doc markdown lives in the `klaudiush/` git submodule.
 
 ## Commands
 
 ```bash
-task build        # Build the redirect binary
-task test         # Run tests
+task dev          # Start dev server (localhost:5173)
+task build        # Build for production
+task preview      # Preview production build
+task test         # Run unit tests
+task test:unit    # Run unit tests
+task test:e2e     # Run e2e tests (Playwright)
 task lint         # Run linter
-task check        # Run lint + test
-task run          # Run locally on :8080
+task check        # Typecheck + lint
 task fmt          # Format code
 task clean        # Clean build artifacts
 ```
 
 ## Architecture
 
-Simple HTTP redirect service:
+SvelteKit app with adapter-node, deployed on fly.io.
 
-- `cmd/redirect/main.go` - Entry point, starts HTTP server on PORT (default 8080)
-- `internal/redirect/handler.go` - Request handler with redirect logic
+- `src/routes/+page.svelte` - Landing page with category cards and error code grid
+- `src/routes/[code]/+page.server.ts` - Error doc page loader (validates code, loads markdown)
+- `src/routes/[code]/+page.svelte` - Error doc page renderer
+- `src/lib/errors/index.ts` - Error code validation, parsing, markdown loading
+- `src/lib/config.ts` - Site metadata, category definitions
+- `src/lib/components/` - Shared components (Navbar, Footer, CategoryCard, etc.)
+- `src/lib/components/ui/` - shadcn-svelte generated components
+- `klaudiush/` - Git submodule with error doc markdown (docs/errors/)
 
-### Redirect Rules
+### Error code routing
 
-| Path Pattern | Destination                                                                 |
-|:-------------|:----------------------------------------------------------------------------|
-| `/`          | `https://github.com/smykla-skalski/klaudiush`                                  |
-| `/GIT001`    | `https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/GIT001.md`  |
-| `/FILE001`   | `https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/FILE001.md` |
-| `/SEC001`    | `https://github.com/smykla-skalski/klaudiush/blob/main/docs/errors/SEC001.md`  |
-| Other        | 404 Not Found                                                               |
+| Path             | Result                                           |
+|:-----------------|:-------------------------------------------------|
+| `/`              | Landing page with all error codes                |
+| `/GIT001`        | Renders GIT001.md from submodule                 |
+| `/git001`        | Same (case-insensitive, normalized to uppercase) |
+| `/INVALID001`    | 404 - invalid prefix                             |
+| `/anything-else` | 404                                              |
 
-Supported error code prefixes: `GIT`, `FILE`, `SEC` (case-insensitive, normalized to uppercase).
+Supported prefixes: `GIT`, `FILE`, `SEC` (pattern: `^(GIT|FILE|SEC)\d{3}$`)
+
+## Stack
+
+Svelte 5, SvelteKit, Tailwind CSS v4, shadcn-svelte (stone theme), mdsvex, TypeScript, Vitest, Playwright
 
 ## Deployment
 
@@ -49,24 +62,16 @@ fly logs                # View logs
 fly status              # Check app status
 ```
 
-### Custom Domain
-
-Domain `klaudiu.sh` configured via:
-
-```bash
-fly certs add klaudiu.sh
-fly ips list            # Get IP addresses for DNS
-```
-
 ## Development
 
-**Tools** (mise): Go 1.25.4, golangci-lint 2.6.2, task 3.45.5
+Tools (mise): Node.js 24, pnpm 10, task 3.45.5
 
 Run `mise install` to set up the development environment.
 
 ## Testing
 
 ```bash
-task test               # Run all tests
-go test -v ./...        # Verbose output
+task test:unit          # Unit tests (Vitest)
+task test:e2e           # E2E tests (Playwright)
+pnpm test:unit -- --watch  # Watch mode
 ```

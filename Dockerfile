@@ -1,15 +1,19 @@
-FROM golang:1.26.0-alpine@sha256:7c6a62c80c3f15fb49aae282d7a296149889ebe39b2318f3a299f2759c1ce135 AS builder
-
+FROM node:24-alpine AS builder
+RUN apk add --no-cache git
 WORKDIR /app
-
-COPY go.mod ./
-RUN go mod download
-
+COPY package.json pnpm-lock.yaml ./
+RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN CGO_ENABLED=0 go build -o redirect ./cmd/redirect
+RUN git submodule update --init --recursive
+RUN pnpm build
+RUN pnpm prune --prod
 
-FROM alpine:3.23@sha256:865b95f46d98cf867a156fe4a135ad3fe50d2056aa3f25ed31662dff6da4eb62
-
-COPY --from=builder /app/redirect /redirect
-
-CMD ["/redirect"]
+FROM node:24-alpine
+WORKDIR /app
+COPY --from=builder /app/build build/
+COPY --from=builder /app/node_modules node_modules/
+COPY package.json .
+EXPOSE 3000
+ENV NODE_ENV=production
+CMD ["node", "build"]

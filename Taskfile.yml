@@ -6,36 +6,53 @@ tasks:
     cmds:
       - task --list
 
-  build:
-    desc: Build the redirect binary
+  dev:
+    desc: Start development server
     cmds:
-      - mise exec -- go build -o bin/redirect ./cmd/redirect
+      - pnpm dev
+
+  build:
+    desc: Build for production
+    cmds:
+      - pnpm build
+
+  preview:
+    desc: Preview production build
+    cmds:
+      - pnpm preview
 
   test:
-    desc: Run tests
+    desc: Run all tests
     cmds:
-      - mise exec -- go test -v -race ./...
+      - pnpm test:unit
+
+  test:unit:
+    desc: Run unit tests
+    cmds:
+      - pnpm test:unit
+
+  test:e2e:
+    desc: Run e2e tests
+    cmds:
+      - pnpm test:e2e
 
   lint:
     desc: Run linter
     cmds:
-      - mise exec -- golangci-lint run
+      - pnpm lint
+
+  check:
+    desc: Run typecheck + lint
+    cmds:
+      - pnpm check
+      - pnpm lint
 
   fmt:
     desc: Format code
     cmds:
-      - mise exec -- go fmt ./...
-
-  check:
-    desc: Run all checks (lint + test)
-    deps: [lint, test]
-
-  run:
-    desc: Run the redirect service locally
-    cmds:
-      - mise exec -- go run ./cmd/redirect
+      - pnpm format
 
   clean:
     desc: Clean build artifacts
     cmds:
-      - rm -rf bin/
+      - rm -rf build/ .svelte-kit/ node_modules/
