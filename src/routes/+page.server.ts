@@ -3,7 +3,7 @@ import { highlightCode } from '$lib/highlight.server';
 
 const brewSnippet = `brew install smykla-skalski/tap/klaudiush`;
 
-const curlSnippet = `curl -fsSL https://klaudiu.sh/install | sh`;
+const curlSnippet = `curl -sSfL https://klaudiu.sh/install.sh | sh`;
 
 const setupSnippet = `klaudiush init --global
 klaudiush doctor`;

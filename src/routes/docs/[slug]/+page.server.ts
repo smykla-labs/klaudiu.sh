@@ -516,7 +516,7 @@ klaudiush debug exceptions --state`
 brew install smykla-skalski/tap/klaudiush
 
 # Or use the install script
-curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh`
+curl -sSfL https://klaudiu.sh/install.sh | sh`
 		},
 		initGlobal: {
 			lang: 'bash',
@@ -570,13 +570,13 @@ git commit -sS -m "feat(api): add user endpoint"
 		installScript: {
 			lang: 'bash',
 			code: `# Default install to ~/.local/bin
-curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh
+curl -sSfL https://klaudiu.sh/install.sh | sh
 
 # Specific version
-curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh -s -- -v v1.18.0
+curl -sSfL https://klaudiu.sh/install.sh | sh -s -- -v v1.18.0
 
 # Custom install directory
-curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh -s -- -b /usr/local/bin`
+curl -sSfL https://klaudiu.sh/install.sh | sh -s -- -b /usr/local/bin`
 		},
 		nix: {
 			lang: 'bash',
@@ -1087,7 +1087,7 @@ After (v1.18+):
 			code: `# 1. Update klaudiush
 brew upgrade klaudiush
 # or
-curl -sSfL https://raw.githubusercontent.com/smykla-skalski/klaudiush/main/install.sh | sh
+curl -sSfL https://klaudiu.sh/install.sh | sh
 
 # 2. Verify version
 klaudiush version

@@ -15,6 +15,7 @@ COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY --from=builder /app/klaudiush/docs/errors klaudiush/docs/errors/
 COPY --from=builder /app/klaudiush/CHANGELOG.md klaudiush/CHANGELOG.md
+COPY --from=builder /app/klaudiush/install.sh klaudiush/install.sh
 COPY package.json .
 EXPOSE 3000
 ENV NODE_ENV=production
