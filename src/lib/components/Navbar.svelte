@@ -4,7 +4,7 @@
 	import { Separator } from '$lib/components/ui/separator';
 </script>
 
-<nav class="border-b border-border bg-background">
+<nav class="border-b border-border bg-background/80 backdrop-blur-sm">
 	<div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
 		<a href="/" class="font-mono text-lg font-bold tracking-tight">{siteConfig.name}</a>
 		<div class="flex items-center gap-4">
