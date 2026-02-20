@@ -1,6 +1,6 @@
 export const siteConfig = {
 	name: 'klaudiush',
-	description: 'Error documentation for klaudiush',
+	description: 'Validation dispatcher for Claude Code hooks',
 	github: 'https://github.com/smykla-skalski/klaudiush'
 } as const;
 

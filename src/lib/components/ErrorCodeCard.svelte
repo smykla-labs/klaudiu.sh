@@ -12,7 +12,7 @@
 	let { code, title, category }: Props = $props();
 </script>
 
-<a href="/{code}" class="block">
+<a href="/e/{code}" class="block">
 	<Card.Root class="transition-shadow hover:shadow-md">
 		<Card.Header class="pb-3">
 			<div class="flex items-center gap-2">

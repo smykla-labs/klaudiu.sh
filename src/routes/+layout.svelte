@@ -13,7 +13,7 @@
 
 <svelte:head>
 	<title>klaudiush</title>
-	<meta name="description" content="Error documentation for klaudiush" />
+	<meta name="description" content="Validation dispatcher for Claude Code hooks" />
 </svelte:head>
 
 <div class="flex min-h-screen flex-col">

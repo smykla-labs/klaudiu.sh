@@ -52,6 +52,7 @@
 		padding: 0.15em 0.35em;
 		font-size: 0.85em;
 		font-weight: 500;
+		color: oklch(0.25 0.01 67);
 	}
 
 	.markdown-content :global(code:not(pre code)::before),
@@ -60,7 +61,7 @@
 	}
 
 	.markdown-content :global(pre) {
-		background: oklch(0.97 0.003 67);
+		background: oklch(0.97 0.003 67) !important;
 		border: 1px solid oklch(0.9 0.005 67);
 		border-radius: 0.5rem;
 		padding: 1em 1.25em;
@@ -75,7 +76,11 @@
 		padding: 0;
 		font-size: inherit;
 		font-weight: 400;
-		color: oklch(0.25 0.01 67);
+	}
+
+	/* Let shiki token colors through but reset the code element default */
+	.markdown-content :global(pre code .line) {
+		display: block;
 	}
 
 	.markdown-content :global(table) {

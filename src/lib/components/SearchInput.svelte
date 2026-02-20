@@ -10,7 +10,7 @@
 		if (e.key === 'Enter' && query.trim()) {
 			const code = normalizeCode(query.trim());
 			if (isValidErrorCode(code)) {
-				goto(`/${code}`);
+				goto(`/e/${code}`);
 			}
 		}
 	}

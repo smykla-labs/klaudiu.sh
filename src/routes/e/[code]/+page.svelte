@@ -13,7 +13,7 @@
 
 <div class="space-y-6">
 	<div>
-		<Button variant="ghost" href="/" class="mb-4 gap-2 pl-2">
+		<Button variant="ghost" href="/e/" class="mb-4 gap-2 pl-2">
 			<ArrowLeft class="h-4 w-4" />
 			Back to all errors
 		</Button>

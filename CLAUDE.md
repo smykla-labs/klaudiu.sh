@@ -4,8 +4,8 @@ Guidance for Claude Code when working with this repository.
 
 ## Project overview
 
-`klaudiu.sh` is the error documentation site for klaudiush.
-Renders error code docs (GIT001, FILE001, SEC001, etc.) as styled pages using SvelteKit.
+`klaudiu.sh` is the website for klaudiush - a validation dispatcher for Claude Code hooks.
+Project landing page at `/`, error docs at `/e/`.
 Error doc markdown lives in the `klaudiush/` git submodule.
 
 ## Commands
@@ -27,9 +27,11 @@ task clean        # Clean build artifacts
 
 SvelteKit app with adapter-node, deployed on fly.io.
 
-- `src/routes/+page.svelte` - Landing page with category cards and error code grid
-- `src/routes/[code]/+page.server.ts` - Error doc page loader (validates code, loads markdown)
-- `src/routes/[code]/+page.svelte` - Error doc page renderer
+- `src/routes/+page.svelte` - Project landing page
+- `src/routes/e/+page.svelte` - Error docs listing with category cards and error code grid
+- `src/routes/e/+page.server.ts` - Error docs listing loader
+- `src/routes/e/[code]/+page.server.ts` - Error doc page loader (validates code, loads markdown)
+- `src/routes/e/[code]/+page.svelte` - Error doc page renderer
 - `src/lib/errors/index.ts` - Error code validation, parsing, markdown loading
 - `src/lib/config.ts` - Site metadata, category definitions
 - `src/lib/components/` - Shared components (Navbar, Footer, CategoryCard, etc.)
@@ -40,10 +42,11 @@ SvelteKit app with adapter-node, deployed on fly.io.
 
 | Path             | Result                                           |
 |:-----------------|:-------------------------------------------------|
-| `/`              | Landing page with all error codes                |
-| `/GIT001`        | Renders GIT001.md from submodule                 |
-| `/git001`        | Same (case-insensitive, normalized to uppercase) |
-| `/INVALID001`    | 404 - invalid prefix                             |
+| `/`              | Project landing page                             |
+| `/e/`            | Error docs listing                               |
+| `/e/GIT001`      | Renders GIT001.md from submodule                 |
+| `/e/git001`      | Same (case-insensitive, normalized to uppercase) |
+| `/e/INVALID001`  | 404 - invalid prefix                             |
 | `/anything-else` | 404                                              |
 
 Supported prefixes: `GIT`, `FILE`, `SEC` (pattern: `^(GIT|FILE|SEC)\d{3}$`)
