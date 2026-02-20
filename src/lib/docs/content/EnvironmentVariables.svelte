@@ -45,7 +45,8 @@
 			<tbody class="text-muted-foreground">
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>NO_COLOR</code></td><td class="py-2">Disable colored output (any non-empty value)</td></tr>
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>KLAUDIUSH_USE_SDK_GIT</code></td><td class="py-2">Use go-git SDK instead of git CLI</td></tr>
-				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>GH_TOKEN</code></td><td class="py-2">GitHub API token for workflow validator (latest version checks)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>GH_TOKEN</code></td><td class="py-2">GitHub API token for workflow validator and self-update (avoids rate limits)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>GITHUB_TOKEN</code></td><td class="py-2">Alias for GH_TOKEN. Falls back to <code>gh auth token</code> if neither is set</td></tr>
 				<tr><td class="py-2 pr-4"><code>KLACK</code></td><td class="py-2">Exception/session token (EXC:CODE:reason or SESS:CODE)</td></tr>
 			</tbody>
 		</table>

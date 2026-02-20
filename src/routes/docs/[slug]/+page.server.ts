@@ -614,6 +614,12 @@ klaudiush completion zsh | sudo tee /usr/local/share/zsh/site-functions/_klaudiu
 # Fish
 klaudiush completion fish > ~/.config/fish/completions/klaudiush.fish`
 		},
+		selfUpdate: {
+			lang: 'bash',
+			code: `klaudiush update                    # Update to latest
+klaudiush update --to v1.18.0       # Update to specific version
+klaudiush update --check            # Check without installing`
+		},
 		verify: {
 			lang: 'bash',
 			code: `klaudiush --version
@@ -706,6 +712,13 @@ klaudiush v1.20.0
   built:   2026-02-20T10:00:00Z
   go:      go1.24.0
   os/arch: darwin/arm64`
+		},
+		update: {
+			lang: 'bash',
+			code: `klaudiush update                    # Update to latest version
+klaudiush update --to v1.18.0       # Update to specific version
+klaudiush update --check            # Check for updates without installing
+klaudiush update --to v1.18.0 --check  # Check if specific version exists`
 		}
 	},
 	configuration: {
@@ -1107,7 +1120,7 @@ klaudiush update --check
 klaudiush update
 
 # Update to specific version
-klaudiush update --version v1.20.0`
+klaudiush update --to v1.20.0`
 		}
 	}
 };

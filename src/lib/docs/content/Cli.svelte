@@ -106,6 +106,36 @@
 	<CodeBlock html={codeSnippets.audit} />
 </section>
 
+<section id="update" class="space-y-4">
+	<h2 class="text-xl font-semibold">update</h2>
+	<p class="text-muted-foreground">
+		Update klaudiush to the latest (or a specific) version from GitHub Releases. Downloads
+		the release archive, verifies the SHA256 checksum, and atomically replaces the current
+		binary. Resolves symlinks, so it works with Homebrew installs too.
+	</p>
+	<CodeBlock html={codeSnippets.update} />
+
+	<div class="overflow-x-auto">
+		<table class="w-full text-sm">
+			<thead>
+				<tr class="border-b border-border">
+					<th class="py-2 pr-4 text-left font-medium">Flag</th>
+					<th class="py-2 text-left font-medium">Description</th>
+				</tr>
+			</thead>
+			<tbody class="text-muted-foreground">
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>--to</code></td><td class="py-2">Target version (e.g. v1.18.0). Omit to get latest</td></tr>
+				<tr><td class="py-2 pr-4"><code>--check</code></td><td class="py-2">Only check for updates, don't install</td></tr>
+			</tbody>
+		</table>
+	</div>
+
+	<p class="text-muted-foreground text-sm">
+		Set <code>GH_TOKEN</code> or <code>GITHUB_TOKEN</code> to avoid GitHub API rate limits.
+		Falls back to <code>gh auth token</code> if available. Times out after 5 minutes.
+	</p>
+</section>
+
 <section id="version" class="space-y-4">
 	<h2 class="text-xl font-semibold">version</h2>
 	<p class="text-muted-foreground">

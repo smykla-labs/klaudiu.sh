@@ -71,6 +71,19 @@
 	<CodeBlock html={codeSnippets.completion} />
 </section>
 
+<section id="updating" class="space-y-4">
+	<h2 class="text-xl font-semibold">Updating</h2>
+	<p class="text-muted-foreground">
+		klaudiush has a built-in self-update command that downloads the release from GitHub,
+		verifies the SHA256 checksum, and atomically replaces the binary.
+	</p>
+	<CodeBlock html={codeSnippets.selfUpdate} />
+	<p class="text-muted-foreground text-sm">
+		Homebrew users can also update via <code>brew upgrade klaudiush</code>. The self-update
+		command resolves symlinks, so it works correctly with Homebrew installs.
+	</p>
+</section>
+
 <section id="verify" class="space-y-4">
 	<h2 class="text-xl font-semibold">Verify installation</h2>
 	<p class="text-muted-foreground">
