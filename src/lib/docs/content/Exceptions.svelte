@@ -80,13 +80,13 @@
 	<CodeBlock html={codeSnippets.tokenParsing} />
 	<ul class="list-disc space-y-2 pl-6 text-sm text-muted-foreground">
 		<li>
-			<strong>Word boundary</strong> - the token must start at a word boundary (after
-			whitespace or at the start of a comment). <code>NOEXC:GIT019:reason</code> does not
-			match because there is no whitespace before <code>EXC:</code>.
+			The token must start at a word boundary (after whitespace or at the start of a
+			comment). <code>NOEXC:GIT019:reason</code> does not match because there is no
+			whitespace before <code>EXC:</code>.
 		</li>
 		<li>
-			<strong>No variable expansion</strong> - only literal strings are accepted. Tokens
-			containing <code>$&#123;...&#125;</code> or <code>$(...)</code> are rejected entirely.
+			Only literal strings are accepted. Tokens containing <code>$&#123;...&#125;</code>
+			or <code>$(...)</code> are rejected entirely.
 		</li>
 	</ul>
 </section>
