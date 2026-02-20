@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Separator } from '$lib/components/ui/separator';
-	import { siteConfig } from '$lib/config';
 </script>
 
 <footer class="mt-auto">
