@@ -21,10 +21,10 @@
 	<title>klaudiush - validation dispatcher for Claude Code hooks</title>
 </svelte:head>
 
-<div class="space-y-16">
-	<section class="relative overflow-hidden py-16 text-center">
-		<HeroBackground />
-		<div class="relative space-y-6">
+<div class="relative space-y-16">
+	<HeroBackground />
+	<section class="relative py-16 text-center">
+		<div class="space-y-6">
 			<h1 class="font-mono text-4xl font-bold tracking-tight">klaudiush</h1>
 			<p class="text-xl text-muted-foreground">Validation dispatcher for Claude Code hooks</p>
 			<p class="mx-auto max-w-xl text-base text-muted-foreground">
