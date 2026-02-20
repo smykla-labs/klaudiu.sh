@@ -20,7 +20,8 @@ export function getHighlighter(): Promise<Highlighter> {
 				'python',
 				'hcl',
 				'dockerfile',
-				'markdown'
+				'markdown',
+				'nix'
 			]
 		});
 	}
