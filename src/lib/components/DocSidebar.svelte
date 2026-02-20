@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { guides } from '$lib/docs';
+	import { onMount } from 'svelte';
 
 	interface TocEntry {
 		id: string;
@@ -12,6 +13,31 @@
 	}
 
 	let { toc = [] }: Props = $props();
+
+	let activeId = $state('');
+
+	onMount(() => {
+		if (toc.length === 0) return;
+
+		const ids = toc.map((e) => e.id);
+
+		const onScroll = () => {
+			const offset = 96; // approximate navbar + breathing room
+			let current = ids[0] ?? '';
+			for (const id of ids) {
+				const el = document.getElementById(id);
+				if (el && el.getBoundingClientRect().top <= offset) {
+					current = id;
+				}
+			}
+			activeId = current;
+		};
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		onScroll();
+
+		return () => window.removeEventListener('scroll', onScroll);
+	});
 </script>
 
 <aside class="hidden w-56 shrink-0 lg:block">
@@ -75,10 +101,14 @@
 				</p>
 				<ul class="space-y-1">
 					{#each toc as entry (entry.id)}
+						{@const active = activeId === entry.id}
 						<li>
 							<a
 								href="#{entry.id}"
-								class="block px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
+								class="block px-2 py-1 text-xs transition-colors
+									{active
+									? 'font-medium text-foreground'
+									: 'text-muted-foreground hover:text-foreground'}"
 							>
 								{entry.label}
 							</a>

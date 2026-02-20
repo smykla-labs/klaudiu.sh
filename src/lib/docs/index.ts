@@ -15,11 +15,25 @@ export interface AdrInfo {
 
 export const guides: GuideInfo[] = [
 	{
+		slug: 'getting-started',
+		title: 'Getting started',
+		subtitle: 'Zero to first validation in five minutes',
+		icon: 'Rocket',
+		description: 'Install klaudiush, configure the Claude Code hook, and run your first validated commit.'
+	},
+	{
+		slug: 'installation',
+		title: 'Installation',
+		subtitle: 'All install methods and shell setup',
+		icon: 'Download',
+		description: 'Homebrew, install.sh, Nix flake, from source. Shell completion for bash, zsh, and fish.'
+	},
+	{
 		slug: 'rules',
 		title: 'Dynamic rules',
-		subtitle: 'Configure validation without code changes',
+		subtitle: 'Validation rules without code changes',
 		icon: 'Settings',
-		description: 'TOML config, glob/regex pattern matching, priority system, per-validator scoping.'
+		description: 'TOML config, glob/regex patterns, priority rules, per-validator scoping.'
 	},
 	{
 		slug: 'backup',
@@ -48,6 +62,62 @@ export const guides: GuideInfo[] = [
 		subtitle: 'Bypass validation with audit trail',
 		icon: 'ShieldOff',
 		description: 'Token format, per-code policies, rate limiting, JSONL audit.'
+	},
+	{
+		slug: 'cli',
+		title: 'CLI reference',
+		subtitle: 'Every command, flag, and argument',
+		icon: 'Terminal',
+		description: 'Full command tree for klaudiush. Init, validate, backup, doctor, audit, and more.'
+	},
+	{
+		slug: 'configuration',
+		title: 'Configuration',
+		subtitle: 'TOML schema and precedence rules',
+		icon: 'FileSliders',
+		description: 'Config file format, deep merge behavior, global vs project config, all config keys.'
+	},
+	{
+		slug: 'environment-variables',
+		title: 'Environment variables',
+		subtitle: 'Every KLAUDIUSH_ var and standard vars',
+		icon: 'Variable',
+		description: 'All environment variables that affect klaudiush behavior. KLAUDIUSH_ prefixed and standard vars.'
+	},
+	{
+		slug: 'troubleshooting',
+		title: 'Troubleshooting',
+		subtitle: 'Common issues and the doctor command',
+		icon: 'Wrench',
+		description: 'Fixes for common problems, doctor command diagnostics, crash dump analysis.'
+	},
+	{
+		slug: 'faq',
+		title: 'FAQ',
+		subtitle: 'Frequently asked questions',
+		icon: 'CircleHelp',
+		description: 'What happens when klaudiush crashes? How to disable a validator? And more.'
+	},
+	{
+		slug: 'security',
+		title: 'Security',
+		subtitle: 'Practices, detection, and reporting',
+		icon: 'Shield',
+		description: 'Secret detection, plugin sandboxing, vulnerability reporting, security model.'
+	},
+	{
+		slug: 'architecture',
+		title: 'Architecture',
+		subtitle: 'Dispatcher flow and system design',
+		icon: 'Workflow',
+		description: 'Validation dispatcher pipeline, validator registry, parallel execution, parser system.'
+	},
+	{
+		slug: 'migration',
+		title: 'Migration guide',
+		subtitle: 'Version upgrades and breaking changes',
+		icon: 'ArrowUpCircle',
+		description: 'Breaking changes by version, JSON stdout migration, upgrade steps.'
 	}
 ];
 
