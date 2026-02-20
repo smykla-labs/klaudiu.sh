@@ -65,7 +65,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.guide.title} - klaudiush docs</title>
+	<title>{data.guide.title} - klaudiush</title>
 </svelte:head>
 
 <div class="flex gap-10">

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CopyButton from './CopyButton.svelte';
+
 	interface Props {
 		html: string;
 	}
@@ -6,9 +8,10 @@
 	let { html }: Props = $props();
 </script>
 
-<div class="shiki-block">
+<div class="shiki-block group relative">
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
 	{@html html}
+	<CopyButton />
 </div>
 
 <style>

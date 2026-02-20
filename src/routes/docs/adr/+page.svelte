@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>Architecture decision records - klaudiush docs</title>
+	<title>ADRs - klaudiush</title>
 </svelte:head>
 
 <div class="flex gap-10">

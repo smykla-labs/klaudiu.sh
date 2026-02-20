@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { copyCode } from '$lib/actions/copy-code';
 
 	interface Props {
 		children: Snippet;
@@ -8,7 +9,7 @@
 	let { children }: Props = $props();
 </script>
 
-<article class="markdown-content prose prose-stone max-w-none dark:prose-invert">
+<article class="markdown-content prose prose-stone max-w-none dark:prose-invert" use:copyCode>
 	{@render children()}
 </article>
 

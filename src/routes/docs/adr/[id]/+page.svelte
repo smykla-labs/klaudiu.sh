@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>ADR-{data.adr.id}: {data.adr.title} - klaudiush docs</title>
+	<title>ADR-{data.adr.id}: {data.adr.title} - klaudiush</title>
 </svelte:head>
 
 <div class="flex gap-10">

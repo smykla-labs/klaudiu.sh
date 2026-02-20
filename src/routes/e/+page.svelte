@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>klaudiush - error documentation</title>
+	<title>Error reference - klaudiush</title>
 </svelte:head>
 
 <div class="space-y-8">

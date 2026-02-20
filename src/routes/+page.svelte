@@ -2,6 +2,8 @@
 	import { siteConfig } from '$lib/config';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import CopyButton from '$lib/components/CopyButton.svelte';
+	import HeroBackground from '$lib/components/HeroBackground.svelte';
 	import {
 		GitBranch,
 		FileCheck,
@@ -20,20 +22,26 @@
 </svelte:head>
 
 <div class="space-y-16">
-	<section class="space-y-6 py-16 text-center">
-		<h1 class="font-mono text-4xl font-bold tracking-tight">klaudiush</h1>
-		<p class="text-xl text-muted-foreground">Validation dispatcher for Claude Code hooks</p>
-		<p class="mx-auto max-w-xl text-base text-muted-foreground">
-			Intercepts tool invocations and enforces git workflow standards, commit conventions, and code
-			quality rules before execution.
-		</p>
-		<div class="flex items-center justify-center gap-3">
-			<Button href="#install">Install</Button>
-			<Button variant="outline" href={siteConfig.github} target="_blank" rel="noopener noreferrer"
-				>GitHub</Button
-			>
-			<Button variant="outline" href="/docs/">Docs</Button>
-			<Button variant="outline" href="/e/">Error docs</Button>
+	<section class="relative overflow-hidden py-16 text-center">
+		<HeroBackground />
+		<div class="relative space-y-6">
+			<h1 class="font-mono text-4xl font-bold tracking-tight">klaudiush</h1>
+			<p class="text-xl text-muted-foreground">Validation dispatcher for Claude Code hooks</p>
+			<p class="mx-auto max-w-xl text-base text-muted-foreground">
+				Intercepts tool invocations and enforces git workflow standards, commit conventions, and code
+				quality rules before execution.
+			</p>
+			<div class="flex items-center justify-center gap-3">
+				<Button href="#install">Install</Button>
+				<Button
+					variant="outline"
+					href={siteConfig.github}
+					target="_blank"
+					rel="noopener noreferrer">GitHub</Button
+				>
+				<Button variant="outline" href="/docs/">Docs</Button>
+				<Button variant="outline" href="/e/">Error docs</Button>
+			</div>
 		</div>
 	</section>
 
@@ -136,24 +144,27 @@
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="space-y-2">
 				<p class="text-sm font-medium">Homebrew</p>
-				<div class="shiki-block">
+				<div class="shiki-block group relative">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
 					{@html data.brewHtml}
+					<CopyButton />
 				</div>
 			</div>
 			<div class="space-y-2">
 				<p class="text-sm font-medium">Install script</p>
-				<div class="shiki-block">
+				<div class="shiki-block group relative">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
 					{@html data.curlHtml}
+					<CopyButton />
 				</div>
 			</div>
 		</div>
 		<div class="space-y-2">
 			<p class="text-sm text-muted-foreground">Then run the setup wizard:</p>
-			<div class="shiki-block">
+			<div class="shiki-block group relative">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
 				{@html data.setupHtml}
+				<CopyButton />
 			</div>
 		</div>
 		<p class="text-sm text-muted-foreground">
@@ -174,9 +185,10 @@
 				>~/.claude/settings.json</code
 			>:
 		</p>
-		<div class="shiki-block">
+		<div class="shiki-block group relative">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
 			{@html data.configHtml}
+			<CopyButton />
 		</div>
 	</section>
 

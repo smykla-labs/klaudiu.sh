@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>Changelog - klaudiush docs</title>
+	<title>Changelog - klaudiush</title>
 </svelte:head>
 
 <div class="flex gap-10">
