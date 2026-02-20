@@ -19,9 +19,12 @@
 		</Button>
 	</div>
 
-	<div class="flex items-center gap-3">
-		<h1 class="font-mono text-2xl font-bold">{data.code}</h1>
-		<Badge variant="outline">{data.category}</Badge>
+	<div class="space-y-1">
+		<div class="flex items-center gap-3">
+			<h1 class="font-mono text-2xl font-bold">{data.code}</h1>
+			<Badge variant="outline">{data.category}</Badge>
+		</div>
+		<p class="text-lg text-muted-foreground">{data.title}</p>
 	</div>
 
 	<MarkdownContent>
