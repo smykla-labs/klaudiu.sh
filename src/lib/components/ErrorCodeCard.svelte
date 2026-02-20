@@ -21,7 +21,7 @@
 			</div>
 		</Card.Header>
 		<Card.Content>
-			<p class="text-sm text-muted-foreground">{title}</p>
+			<p class="truncate text-sm text-muted-foreground">{title}</p>
 		</Card.Content>
 	</Card.Root>
 </a>
