@@ -2,35 +2,10 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Marked } from 'marked';
 import markedShiki from 'marked-shiki';
-import { createHighlighter } from 'shiki';
+import { getHighlighter } from '$lib/highlight.server';
 import { isValidErrorCode, parseCategory, parseTitleFromMarkdown, type ErrorDoc } from './index';
 
 const ERRORS_DIR = resolve('klaudiush/docs/errors');
-
-let highlighterPromise: ReturnType<typeof createHighlighter> | null = null;
-
-function getHighlighter() {
-	if (!highlighterPromise) {
-		highlighterPromise = createHighlighter({
-			themes: ['github-light'],
-			langs: [
-				'bash',
-				'shell',
-				'json',
-				'yaml',
-				'toml',
-				'go',
-				'typescript',
-				'javascript',
-				'python',
-				'hcl',
-				'dockerfile',
-				'markdown'
-			]
-		});
-	}
-	return highlighterPromise;
-}
 
 async function getMarkedInstance() {
 	const highlighter = await getHighlighter();

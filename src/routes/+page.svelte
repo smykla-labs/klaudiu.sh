@@ -11,6 +11,8 @@
 		Zap,
 		ArrowRight
 	} from '@lucide/svelte';
+
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -133,27 +135,25 @@
 		<div class="grid gap-4 sm:grid-cols-2">
 			<div class="space-y-2">
 				<p class="text-sm font-medium">Homebrew</p>
-				<pre
-					class="rounded-lg border border-[oklch(0.9_0.005_67)] bg-[oklch(0.97_0.003_67)] p-4 font-mono text-sm text-[oklch(0.25_0.01_67)]"><code
-						>brew tap smykla-skalski/tap
-brew install klaudiush</code
-					></pre>
+				<div class="shiki-block">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
+					{@html data.brewHtml}
+				</div>
 			</div>
 			<div class="space-y-2">
 				<p class="text-sm font-medium">Install script</p>
-				<pre
-					class="rounded-lg border border-[oklch(0.9_0.005_67)] bg-[oklch(0.97_0.003_67)] p-4 font-mono text-sm text-[oklch(0.25_0.01_67)]"><code
-						>curl -fsSL https://klaudiu.sh/install | sh</code
-					></pre>
+				<div class="shiki-block">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
+					{@html data.curlHtml}
+				</div>
 			</div>
 		</div>
 		<div class="space-y-2">
 			<p class="text-sm text-muted-foreground">Then run the setup wizard:</p>
-			<pre
-				class="rounded-lg border border-[oklch(0.9_0.005_67)] bg-[oklch(0.97_0.003_67)] p-4 font-mono text-sm text-[oklch(0.25_0.01_67)]"><code
-					>klaudiush init --global
-klaudiush doctor</code
-				></pre>
+			<div class="shiki-block">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
+				{@html data.setupHtml}
+			</div>
 		</div>
 		<p class="text-sm text-muted-foreground">
 			Also available via Nix and from source. See the <a
@@ -173,24 +173,10 @@ klaudiush doctor</code
 				>~/.claude/settings.json</code
 			>:
 		</p>
-		<pre
-			class="rounded-lg border border-[oklch(0.9_0.005_67)] bg-[oklch(0.97_0.003_67)] p-4 font-mono text-sm text-[oklch(0.25_0.01_67)]"><code
-				>{`{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash|Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "klaudiush validate"
-          }
-        ]
-      }
-    ]
-  }
-}`}</code
-			></pre>
+		<div class="shiki-block">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
+			{@html data.configHtml}
+		</div>
 	</section>
 
 	<section class="flex justify-center">
@@ -210,3 +196,28 @@ klaudiush doctor</code
 		</Card.Root>
 	</section>
 </div>
+
+<style>
+	.shiki-block :global(pre) {
+		background: oklch(0.97 0.003 67) !important;
+		border: 1px solid oklch(0.9 0.005 67);
+		border-radius: 0.5rem;
+		padding: 1em 1.25em;
+		overflow-x: auto;
+		font-size: 0.875rem;
+		line-height: 1.65;
+		margin: 0;
+	}
+
+	.shiki-block :global(code) {
+		background: none;
+		border: none;
+		padding: 0;
+		font-size: inherit;
+		font-weight: 400;
+	}
+
+	.shiki-block :global(.line:empty::after) {
+		content: ' ';
+	}
+</style>

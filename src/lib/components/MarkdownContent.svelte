@@ -78,9 +78,8 @@
 		font-weight: 400;
 	}
 
-	/* Let shiki token colors through but reset the code element default */
-	.markdown-content :global(pre code .line) {
-		display: block;
+	.markdown-content :global(pre code .line:empty::after) {
+		content: ' ';
 	}
 
 	.markdown-content :global(table) {
