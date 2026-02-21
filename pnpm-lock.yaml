@@ -21,6 +21,9 @@ importers:
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.0.1(jiti@2.6.1))
+      '@internationalized/date':
+        specifier: ^3.11.0
+        version: 3.11.0
       '@lucide/svelte':
         specifier: ^0.575.0
         version: 0.575.0(svelte@5.53.0)
