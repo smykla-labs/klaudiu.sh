@@ -13,7 +13,7 @@
 
 	<h3 class="text-lg font-medium">Do I need a config file?</h3>
 	<p class="text-muted-foreground">
-		No. All validators have sensible defaults. A config file is only needed when you
+		No. All validators have good defaults. A config file is only needed when you
 		want to change defaults, add custom rules, or configure features like backup and
 		exceptions.
 	</p>

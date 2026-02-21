@@ -97,13 +97,11 @@
 <section id="doctor" class="space-y-4">
 	<h2 class="text-xl font-semibold">Doctor integration</h2>
 	<p class="text-muted-foreground">
-		The <code>doctor</code> command validates backup system health - directory structure, metadata
-		integrity, and snapshot checksums.
+		The <code>doctor</code> command checks your backup setup - directories, metadata, and checksums.
 	</p>
 	<CodeBlock html={codeSnippets.doctor} />
 	<p class="text-muted-foreground">
-		With <code>--fix</code>, doctor creates missing directories, rebuilds corrupted metadata, and
-		removes snapshots with invalid checksums.
+		With <code>--fix</code>, doctor repairs the backup directory structure and removes corrupted snapshots.
 	</p>
 </section>
 

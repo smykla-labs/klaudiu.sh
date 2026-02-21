@@ -60,15 +60,14 @@
 		execution and can block it by returning a deny response. This means:
 	</p>
 	<ul class="list-disc space-y-1 pl-6 text-sm text-muted-foreground">
-		<li>Secrets are caught before they're written to disk or committed</li>
-		<li>Dangerous shell commands are blocked before execution</li>
-		<li>Git operations are validated before they run</li>
-		<li>File writes to sensitive paths are prevented</li>
+		<li>Secrets are caught before they reach disk or git history</li>
+		<li>Dangerous shell commands are blocked</li>
+		<li>Git operations go through validation first</li>
+		<li>Sensitive file paths are protected</li>
 	</ul>
 	<p class="text-muted-foreground">
-		Built-in protections include bash AST parsing (detects file writes via redirects, tee,
-		cp, mv), path protection (blocks <code>/tmp</code> writes), and backtick detection
-		(catches unquoted command substitution).
+		The bash AST parser detects file writes via redirects, tee, cp, and mv. Path protection
+		blocks writes to <code>/tmp</code>. Backtick detection catches unquoted command substitution.
 	</p>
 	<Callout type="warning" title="Not a security boundary">
 		<p>klaudiush validates Claude Code tool calls. It does not sandbox the Claude Code process

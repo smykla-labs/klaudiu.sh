@@ -29,7 +29,7 @@
 			<h1 class="font-mono text-4xl font-bold tracking-tight">klaudiush</h1>
 			<p class="text-xl text-muted-foreground">Validation dispatcher for Claude Code hooks</p>
 			<p class="mx-auto max-w-xl text-base text-muted-foreground">
-				Intercepts tool invocations and enforces git workflow standards, commit conventions, and code
+				Intercepts tool invocations and enforces git workflow standards and code
 				quality rules before execution.
 			</p>
 			<div class="flex items-center justify-center gap-3">

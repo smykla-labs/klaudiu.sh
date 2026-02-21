@@ -12,8 +12,7 @@
 	<h2 class="text-xl font-semibold">Overview</h2>
 	<p class="text-muted-foreground">
 		klaudiush is invoked as a Claude Code hook. It reads JSON from stdin, validates the
-		operation, and writes JSON to stdout. The CLI also includes commands for configuration
-		management, diagnostics, and auditing.
+		operation, and writes JSON to stdout. The CLI also has commands for config management and diagnostics.
 	</p>
 </section>
 

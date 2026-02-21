@@ -14,7 +14,7 @@
 	<p class="text-muted-foreground">
 		klaudiush is a validation dispatcher for Claude Code hooks. It intercepts tool calls
 		(git commits, file writes, bash commands) and validates them against configurable rules
-		before they execute. This guide walks you through install, hook setup, and your first
+		before they execute. This guide covers install, hook setup, and your first
 		validated commit.
 	</p>
 </section>
@@ -29,7 +29,7 @@
 	<CodeBlock html={codeSnippets.install} />
 	<p class="text-muted-foreground">
 		After installing, run the init command to create a global config file. The interactive
-		prompts detect your git author info and set up sensible defaults.
+		prompts detect your git author info and set up defaults.
 	</p>
 	<CodeBlock html={codeSnippets.initGlobal} />
 </section>

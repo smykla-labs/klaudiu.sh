@@ -22,8 +22,7 @@
 	<h2 class="text-xl font-semibold">v1.17 to v1.18</h2>
 	<p class="text-muted-foreground">
 		v1.18 changed how klaudiush communicates with Claude Code. Instead of exit codes,
-		it now uses JSON stdout for all responses. This is the biggest breaking change
-		in the project's history.
+		it now uses JSON stdout for all responses. This is the only breaking change so far.
 	</p>
 	<CodeBlock html={codeSnippets.jsonMigration} />
 	<Callout type="warning" title="Exit code change">

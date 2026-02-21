@@ -19,7 +19,7 @@ export const guides: GuideInfo[] = [
 		title: 'Getting started',
 		subtitle: 'Zero to first validation in five minutes',
 		icon: 'Rocket',
-		description: 'Install klaudiush, configure the Claude Code hook, and run your first validated commit.'
+		description: 'Install klaudiush, wire up the hook, and validate your first commit.'
 	},
 	{
 		slug: 'installation',
@@ -38,7 +38,7 @@ export const guides: GuideInfo[] = [
 	{
 		slug: 'backup',
 		title: 'Backup system',
-		subtitle: 'Version history with delta compression',
+		subtitle: 'Automatic snapshots with deduplication',
 		icon: 'Archive',
 		description: 'Automatic snapshots, retention policies, checksum validation, CLI commands.'
 	},
@@ -66,7 +66,7 @@ export const guides: GuideInfo[] = [
 	{
 		slug: 'cli',
 		title: 'CLI reference',
-		subtitle: 'Every command, flag, and argument',
+		subtitle: 'All commands and flags',
 		icon: 'Terminal',
 		description: 'Full command tree for klaudiush. Init, validate, backup, doctor, audit, and more.'
 	},
