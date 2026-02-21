@@ -115,7 +115,13 @@ export const guides: GuideInfo[] = [
 ];
 
 export const adrs: AdrInfo[] = [
-	{ id: '0001', title: 'JSON stdout output', status: 'accepted', date: '2026-02-19' }
+	{ id: '0001', title: 'JSON stdout output', status: 'accepted', date: '2026-02-19' },
+	{
+		id: '0002',
+		title: 'Adopt XDG Base Directory specification for path management',
+		status: 'accepted',
+		date: '2026-02-21'
+	}
 ];
 
 export function findGuide(slug: string): GuideInfo | undefined {
