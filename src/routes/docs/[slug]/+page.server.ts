@@ -791,6 +791,16 @@ check_all_commands = false
 [validators.notification.bell]
 enabled = true`
 		},
+		schemaUrl: {
+			lang: 'text',
+			code: `https://klaudiu.sh/schema/v1/config.json`
+		},
+		schemaValidate: {
+			lang: 'bash',
+			code: `# Convert TOML to JSON, then validate against the schema
+yq -p toml -o json .klaudiush/config.toml | \\
+  ajv validate -s <(curl -s https://klaudiu.sh/schema/v1/config.json) -d -`
+		},
 		deepMerge: {
 			lang: 'toml',
 			code: `# Global: ~/.klaudiush/config.toml

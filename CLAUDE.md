@@ -69,6 +69,7 @@ SvelteKit app with adapter-node, deployed on fly.io.
 | `/docs/changelog`            | Changelog (from submodule CHANGELOG.md)          |
 | `/docs/adr/`                 | ADR listing                                      |
 | `/docs/adr/0001`             | Individual ADR page                              |
+| `/schema/v1/config.json`     | JSON Schema for config (from submodule)          |
 | `/e/`                        | Error docs listing                               |
 | `/e/GIT001`                  | Renders GIT001.md from submodule                 |
 | `/e/git001`                  | Same (case-insensitive, normalized to uppercase) |

@@ -104,6 +104,7 @@
 			{ id: 'file-locations', label: 'File locations' },
 			{ id: 'precedence', label: 'Precedence' },
 			{ id: 'schema', label: 'Schema reference' },
+			{ id: 'json-schema', label: 'JSON schema' },
 			{ id: 'deep-merge', label: 'Deep merge' },
 			{ id: 'full-example', label: 'Full example' }
 		],

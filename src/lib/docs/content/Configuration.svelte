@@ -64,6 +64,44 @@
 	</Callout>
 </section>
 
+<section id="json-schema" class="space-y-4">
+	<h2 class="text-xl font-semibold">JSON schema</h2>
+	<p class="text-muted-foreground">
+		A machine-readable <a href="https://json-schema.org/draft/2020-12" class="underline underline-offset-2 hover:text-foreground">JSON Schema (draft 2020-12)</a>
+		is published for the configuration format. It defines every property, type constraint,
+		enum value, and nested structure.
+	</p>
+	<CodeBlock html={codeSnippets.schemaUrl} />
+	<p class="text-muted-foreground">
+		The schema is generated from the Go config structs and stays in sync with each release.
+		It covers all top-level sections (<code>validators</code>, <code>rules</code>,
+		<code>plugins</code>, <code>backup</code>, <code>session</code>, <code>exceptions</code>,
+		<code>patterns</code>, <code>crash_dump</code>, <code>global</code>) and their full
+		type hierarchy.
+	</p>
+
+	<h3 class="text-lg font-medium">Use cases</h3>
+	<ul class="list-disc space-y-1 pl-6 text-sm text-muted-foreground">
+		<li>Validate config files programmatically before deployment</li>
+		<li>Generate config documentation or forms from the schema</li>
+		<li>Editor autocompletion in IDEs that support JSON Schema for TOML</li>
+		<li>CI checks that catch config typos before they hit production</li>
+	</ul>
+
+	<h3 class="text-lg font-medium">Validating a config file</h3>
+	<p class="text-muted-foreground">
+		Convert your TOML config to JSON, then validate it against the schema with any
+		JSON Schema validator. Example using <code>yq</code> and <code>ajv</code>:
+	</p>
+	<CodeBlock html={codeSnippets.schemaValidate} />
+
+	<Callout type="tip" title="Schema versioning">
+		<p>The schema URL includes the version (<code>/v1/</code>). If the config format
+		changes in a backward-incompatible way, a new version will be published at
+		<code>/v2/</code> while the old one remains available.</p>
+	</Callout>
+</section>
+
 <section id="deep-merge" class="space-y-4">
 	<h2 class="text-xl font-semibold">Deep merge</h2>
 	<p class="text-muted-foreground">
