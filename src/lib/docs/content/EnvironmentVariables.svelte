@@ -13,7 +13,8 @@
 
 <section id="klaudiush-vars" class="space-y-4">
 	<h2 class="text-xl font-semibold">KLAUDIUSH_ variables</h2>
-	<h3 class="text-lg font-medium">Git Add</h3>
+	<h3 class="text-lg font-medium">Validators</h3>
+	<h4 class="text-base font-medium">Git Add</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -24,7 +25,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Git Commit</h3>
+	<h4 class="text-base font-medium">Git Commit</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -39,7 +40,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Git Push</h3>
+	<h4 class="text-base font-medium">Git Push</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -49,7 +50,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Git PR</h3>
+	<h4 class="text-base font-medium">Git PR</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -60,7 +61,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Git Branch</h3>
+	<h4 class="text-base font-medium">Git Branch</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -71,7 +72,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Markdown</h3>
+	<h4 class="text-base font-medium">Markdown</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -82,7 +83,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Shellscript</h3>
+	<h4 class="text-base font-medium">Shellscript</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -93,7 +94,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Terraform</h3>
+	<h4 class="text-base font-medium">Terraform</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
@@ -104,7 +105,7 @@
 		</table>
 	</div>
 
-	<h3 class="text-lg font-medium">Workflow</h3>
+	<h4 class="text-base font-medium">Workflow</h4>
 	<div class="overflow-x-auto">
 		<table class="w-full text-sm">
 			<colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
