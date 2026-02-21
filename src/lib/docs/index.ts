@@ -108,9 +108,9 @@ export const guides: GuideInfo[] = [
 	{
 		slug: 'architecture',
 		title: 'Architecture',
-		subtitle: 'How every subsystem fits together',
+		subtitle: 'Dispatcher flow and system design',
 		icon: 'Workflow',
-		description: 'Hook integration, dispatcher pipeline, error codes, sessions, exceptions, rules, plugins, config loading, crash recovery.'
+		description: 'Validation dispatcher pipeline, validator registry, parallel execution, parser system.'
 	},
 	{
 		slug: 'migration',

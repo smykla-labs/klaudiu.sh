@@ -135,20 +135,11 @@
 		],
 		architecture: [
 			{ id: 'overview', label: 'Overview' },
-			{ id: 'hook-integration', label: 'Hook integration' },
 			{ id: 'dispatcher', label: 'Dispatcher flow' },
-			{ id: 'error-codes', label: 'Error codes' },
 			{ id: 'validators', label: 'Validator registry' },
 			{ id: 'parallel-execution', label: 'Parallel execution' },
 			{ id: 'parsers', label: 'Parser system' },
-			{ id: 'rules-engine', label: 'Rules engine' },
-			{ id: 'session-system', label: 'Session system' },
-			{ id: 'exception-system', label: 'Exception pipeline' },
-			{ id: 'plugin-system', label: 'Plugin system' },
-			{ id: 'config-loading', label: 'Config loading' },
-			{ id: 'backup-system', label: 'Backup system' },
-			{ id: 'crash-recovery', label: 'Crash recovery' },
-			{ id: 'source-layout', label: 'Source layout' }
+			{ id: 'config-loading', label: 'Config loading' }
 		],
 		migration: [
 			{ id: 'overview', label: 'Overview' },
