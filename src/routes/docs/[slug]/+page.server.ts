@@ -978,30 +978,6 @@ Timeline:
 			lang: 'text',
 			code: `Claude Code JSON \u2192 CLI \u2192 JSON Parser \u2192 Dispatcher \u2192 Registry \u2192 Validators \u2192 Result`
 		},
-		directoryLayout: {
-			lang: 'text',
-			code: `klaudiush/
-\u251c\u2500\u2500 cmd/klaudiush/          # CLI entry point
-\u251c\u2500\u2500 pkg/
-\u2502   \u251c\u2500\u2500 hook/               # Event types, Context
-\u2502   \u251c\u2500\u2500 parser/             # Bash/Git/command parsing
-\u2502   \u251c\u2500\u2500 config/             # Configuration models
-\u2502   \u2514\u2500\u2500 logger/             # Structured logging
-\u2514\u2500\u2500 internal/
-    \u251c\u2500\u2500 dispatcher/         # Validation orchestration
-    \u251c\u2500\u2500 validator/          # Validator interface, registry
-    \u251c\u2500\u2500 validators/         # All validator implementations
-    \u2502   \u251c\u2500\u2500 git/            # Git-specific validators
-    \u2502   \u251c\u2500\u2500 file/           # File format validators
-    \u2502   \u251c\u2500\u2500 secrets/        # Secret detection
-    \u2502   \u251c\u2500\u2500 shell/          # Shell command validators
-    \u2502   \u2514\u2500\u2500 notification/   # Notification validators
-    \u251c\u2500\u2500 rules/              # Dynamic validation rules
-    \u251c\u2500\u2500 exceptions/         # Exception workflow
-    \u251c\u2500\u2500 config/             # Configuration loading
-    \u251c\u2500\u2500 doctor/             # Diagnostic system
-    \u2514\u2500\u2500 backup/             # Config backup system`
-		},
 		hookOutput: {
 			lang: 'json',
 			code: `{
@@ -1014,20 +990,6 @@ Timeline:
   "systemMessage": "..."
 }`
 		},
-		predicates: {
-			lang: 'text',
-			code: `Predicate types:
-  EventTypeIs      Match hook event (PreToolUse, PostToolUse, Notification)
-  ToolTypeIs       Match tool name (Bash, Write, Edit)
-  CommandContains  Match command substring
-  FileExtensionIs  Match file extension (.md, .tf, .go)
-  FilePathMatches  Match file path pattern
-
-Composable:
-  And(p1, p2)     Both must match
-  Or(p1, p2)      Either matches
-  Not(p)          Inverts match`
-		}
 	},
 	migration: {
 		jsonMigration: {
