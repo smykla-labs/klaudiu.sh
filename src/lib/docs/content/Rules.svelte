@@ -166,7 +166,7 @@
 </section>
 
 <style>
-	code {
+	code:not(pre code) {
 		background: oklch(0.96 0.005 67);
 		border: 1px solid oklch(0.9 0.005 67);
 		border-radius: 0.25rem;
@@ -174,5 +174,7 @@
 		font-size: 0.85em;
 		font-weight: 500;
 		color: oklch(0.25 0.01 67);
+		display: inline-block;
+		vertical-align: middle;
 	}
 </style>

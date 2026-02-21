@@ -55,6 +55,8 @@
 		font-size: 0.85em;
 		font-weight: 500;
 		color: oklch(0.25 0.01 67);
+		display: inline-block;
+		vertical-align: middle;
 	}
 
 	.markdown-content :global(code:not(pre code)::before),
