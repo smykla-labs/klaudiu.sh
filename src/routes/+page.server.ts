@@ -5,32 +5,14 @@ const brewSnippet = `brew install smykla-skalski/tap/klaudiush`;
 
 const curlSnippet = `curl -sSfL https://klaudiu.sh/install.sh | sh`;
 
-const setupSnippet = `klaudiush init --global
-klaudiush doctor`;
-
-const configSnippet = `{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash|Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "klaudiush validate"
-          }
-        ]
-      }
-    ]
-  }
-}`;
+const setupSnippet = `klaudiush init --global`;
 
 export const load: PageServerLoad = async () => {
-	const [brewHtml, curlHtml, setupHtml, configHtml] = await Promise.all([
+	const [brewHtml, curlHtml, setupHtml] = await Promise.all([
 		highlightCode(brewSnippet, 'bash'),
 		highlightCode(curlSnippet, 'bash'),
-		highlightCode(setupSnippet, 'bash'),
-		highlightCode(configSnippet, 'json')
+		highlightCode(setupSnippet, 'bash')
 	]);
 
-	return { brewHtml, curlHtml, setupHtml, configHtml };
+	return { brewHtml, curlHtml, setupHtml };
 };

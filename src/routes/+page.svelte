@@ -161,7 +161,7 @@
 			</div>
 		</div>
 		<div class="space-y-2">
-			<p class="text-sm text-muted-foreground">Then run the setup wizard:</p>
+			<p class="text-sm text-muted-foreground">Then run the setup wizard (registers the hook and creates config):</p>
 			<div class="shiki-block group relative">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
 				{@html data.setupHtml}
@@ -176,21 +176,6 @@
 				class="underline underline-offset-2 hover:text-foreground">GitHub README</a
 			> for all options.
 		</p>
-	</section>
-
-	<section class="space-y-4">
-		<h2 class="text-2xl font-semibold">Claude Code configuration</h2>
-		<p class="text-sm text-muted-foreground">
-			Add to <code
-				class="rounded border border-[oklch(0.9_0.005_67)] bg-[oklch(0.96_0.005_67)] px-1.5 py-0.5 font-mono text-xs text-[oklch(0.25_0.01_67)]"
-				>~/.claude/settings.json</code
-			>:
-		</p>
-		<div class="shiki-block group relative">
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -- server-highlighted code -->
-			{@html data.configHtml}
-			<CopyButton />
-		</div>
 	</section>
 
 	<section class="flex justify-center">
