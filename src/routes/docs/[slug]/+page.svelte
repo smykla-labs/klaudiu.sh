@@ -135,8 +135,8 @@
 		],
 		migration: [
 			{ id: 'overview', label: 'Overview' },
-			{ id: 'v0-2', label: 'v0.1 to v0.2' },
-			{ id: 'json-stdout', label: 'JSON stdout migration' },
+			{ id: 'v1-24', label: 'v1.24.0 - XDG migration' },
+			{ id: 'v1-18', label: 'v1.18.0 - JSON stdout' },
 			{ id: 'upgrade-steps', label: 'Upgrade steps' }
 		]
 	};
