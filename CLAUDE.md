@@ -39,6 +39,9 @@ SvelteKit app with adapter-node, deployed on fly.io.
 - `src/routes/docs/[slug]/+page.server.ts` - Guide loader (validates slug, highlights code)
 - `src/routes/docs/changelog/` - Changelog (rendered from submodule CHANGELOG.md)
 - `src/routes/docs/adr/` - ADR listing and detail pages
+- `src/routes/docs/examples/` - Examples listing and category pages
+- `src/lib/examples/index.ts` - Example category registry
+- `src/lib/examples/loader.server.ts` - Filesystem scanner for example files
 - `src/lib/docs/index.ts` - Guide and ADR registries
 - `src/lib/docs/content/` - Per-guide Svelte content components
 - `src/lib/components/` - Shared components (Navbar, Footer, CategoryCard, DocCard, etc.)
@@ -67,6 +70,8 @@ SvelteKit app with adapter-node, deployed on fly.io.
 | `/docs/architecture`         | Architecture overview                            |
 | `/docs/migration`            | Migration guide                                  |
 | `/docs/changelog`            | Changelog (from submodule CHANGELOG.md)          |
+| `/docs/examples/`           | Example configs listing                          |
+| `/docs/examples/config`     | Config example files                             |
 | `/docs/adr/`                 | ADR listing                                      |
 | `/docs/adr/0001`             | Individual ADR page                              |
 | `/schema/v1/config.json`     | JSON Schema for config (from submodule)          |

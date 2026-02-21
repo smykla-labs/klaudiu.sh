@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import DocSidebar from '$lib/components/DocSidebar.svelte';
+	import Collapsible from '$lib/components/Collapsible.svelte';
 	import { ArrowLeft } from '@lucide/svelte';
 	import GettingStarted from '$lib/docs/content/GettingStarted.svelte';
 	import Installation from '$lib/docs/content/Installation.svelte';
@@ -174,9 +175,11 @@
 		</div>
 
 		<!-- Mobile ToC -->
-		<details class="rounded-lg border border-border p-3 lg:hidden">
-			<summary class="cursor-pointer text-sm font-medium">On this page</summary>
-			<ul class="mt-2 space-y-1">
+		<Collapsible class="lg:hidden">
+			{#snippet summary()}
+				<span class="text-sm font-medium">On this page</span>
+			{/snippet}
+			<ul class="space-y-1">
 				{#each toc as entry (entry.id)}
 					<li>
 						<a
@@ -188,7 +191,7 @@
 					</li>
 				{/each}
 			</ul>
-		</details>
+		</Collapsible>
 
 		<div class="space-y-10">
 			{#if data.guide.slug === 'getting-started'}

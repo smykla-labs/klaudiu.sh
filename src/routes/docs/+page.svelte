@@ -61,6 +61,16 @@
 	</section>
 
 	<section class="space-y-4">
+		<h2 class="text-xl font-semibold">Examples</h2>
+		<p class="text-sm text-muted-foreground">
+			Ready-to-use configuration files for common setups.
+			<a href="/docs/examples/" class="underline underline-offset-2 hover:text-foreground"
+				>Browse examples</a
+			>
+		</p>
+	</section>
+
+	<section class="space-y-4">
 		<h2 class="text-xl font-semibold">Changelog</h2>
 		<p class="text-sm text-muted-foreground">
 			Version history and release notes.

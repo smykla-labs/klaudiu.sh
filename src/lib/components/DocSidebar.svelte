@@ -82,6 +82,17 @@
 				</li>
 				<li>
 					<a
+						href="/docs/examples/"
+						class="block rounded-md px-2 py-1.5 text-sm transition-colors
+							{$page.url.pathname.startsWith('/docs/examples')
+							? 'bg-accent font-medium text-accent-foreground'
+							: 'text-muted-foreground hover:text-foreground'}"
+					>
+						Examples
+					</a>
+				</li>
+				<li>
+					<a
 						href="/docs/adr/"
 						class="block rounded-md px-2 py-1.5 text-sm transition-colors
 							{$page.url.pathname.startsWith('/docs/adr')

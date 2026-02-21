@@ -115,7 +115,7 @@
 <section id="full-example" class="space-y-3">
 	<h2 class="text-xl font-semibold">Full example</h2>
 	<p class="text-muted-foreground">
-		See the <code>examples/config/</code> directory in the klaudiush repository for
+		Browse the <a href="/docs/examples/config" class="underline underline-offset-2 hover:text-foreground">general config examples</a> for
 		ready-to-use configs: minimal setup, full reference, project overrides, and
 		language-specific configs (JavaScript, Rust).
 	</p>

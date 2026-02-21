@@ -15,6 +15,7 @@ COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY --from=builder /app/klaudiush/docs/errors klaudiush/docs/errors/
 COPY --from=builder /app/klaudiush/CHANGELOG.md klaudiush/CHANGELOG.md
+COPY --from=builder /app/klaudiush/examples klaudiush/examples/
 COPY --from=builder /app/klaudiush/install.sh klaudiush/install.sh
 COPY --from=builder /app/klaudiush/schema klaudiush/schema/
 COPY package.json .
