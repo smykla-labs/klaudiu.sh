@@ -29,7 +29,26 @@
 		specification. Files that previously lived under <code>~/.klaudiush/</code> are
 		split across config, data, and state directories.
 	</p>
-	<CodeBlock html={codeSnippets.xdgPathMapping} />
+	<div class="overflow-x-auto">
+		<table class="w-full text-sm">
+			<thead>
+				<tr class="border-b border-border">
+					<th class="py-2 pr-4 text-left font-medium">Old path</th>
+					<th class="py-2 text-left font-medium">New path (XDG)</th>
+				</tr>
+			</thead>
+			<tbody class="text-muted-foreground">
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.klaudiush/config.toml</code></td><td class="py-2"><code>$XDG_CONFIG_HOME/klaudiush/config.toml</code></td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.claude/hooks/dispatcher.log</code></td><td class="py-2"><code>$XDG_STATE_HOME/klaudiush/dispatcher.log</code></td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.klaudiush/exceptions/state.json</code></td><td class="py-2"><code>$XDG_DATA_HOME/klaudiush/exceptions/state.json</code></td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.klaudiush/exception_audit.jsonl</code></td><td class="py-2"><code>$XDG_STATE_HOME/klaudiush/exception_audit.jsonl</code></td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.klaudiush/crash_dumps/</code></td><td class="py-2"><code>$XDG_DATA_HOME/klaudiush/crash_dumps/</code></td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.klaudiush/patterns/</code></td><td class="py-2"><code>$XDG_DATA_HOME/klaudiush/patterns/</code></td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>~/.klaudiush/.backups/</code></td><td class="py-2"><code>$XDG_DATA_HOME/klaudiush/backups/</code></td></tr>
+				<tr><td class="py-2 pr-4"><code>~/.klaudiush/plugins/</code></td><td class="py-2"><code>$XDG_DATA_HOME/klaudiush/plugins/</code></td></tr>
+			</tbody>
+		</table>
+	</div>
 	<CodeBlock html={codeSnippets.xdgDefaults} />
 
 	<h3 class="text-lg font-medium">What happens on upgrade</h3>

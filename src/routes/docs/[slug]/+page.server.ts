@@ -1088,19 +1088,6 @@ klaudiush update
 # Update to specific version
 klaudiush update --to v1.20.0`
 		},
-		xdgPathMapping: {
-			lang: 'text',
-			code: `Old path                              New path (XDG)
-─────────────────────────────────────────────────────────────────────────────
-~/.klaudiush/config.toml              $XDG_CONFIG_HOME/klaudiush/config.toml
-~/.claude/hooks/dispatcher.log        $XDG_STATE_HOME/klaudiush/dispatcher.log
-~/.klaudiush/exceptions/state.json    $XDG_DATA_HOME/klaudiush/exceptions/state.json
-~/.klaudiush/exception_audit.jsonl    $XDG_STATE_HOME/klaudiush/exception_audit.jsonl
-~/.klaudiush/crash_dumps/             $XDG_DATA_HOME/klaudiush/crash_dumps/
-~/.klaudiush/patterns/                $XDG_DATA_HOME/klaudiush/patterns/
-~/.klaudiush/.backups/                $XDG_DATA_HOME/klaudiush/backups/
-~/.klaudiush/plugins/                 $XDG_DATA_HOME/klaudiush/plugins/`
-		},
 		xdgDefaults: {
 			lang: 'bash',
 			code: `# Default XDG locations (when env vars are not set)
