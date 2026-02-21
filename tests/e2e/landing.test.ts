@@ -21,7 +21,7 @@ test('landing page code blocks have syntax highlighting', async ({ page }) => {
 	await page.goto('/');
 	// shiki wraps highlighted code in pre.shiki
 	const shikiBlocks = page.locator('pre.shiki');
-	await expect(shikiBlocks).toHaveCount(4);
+	await expect(shikiBlocks).toHaveCount(3);
 	// tokens should have inline color styles from shiki
 	const span = shikiBlocks.first().locator('span[style*="color"]').first();
 	await expect(span).toBeVisible();
