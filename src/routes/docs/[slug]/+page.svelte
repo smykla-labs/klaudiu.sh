@@ -36,7 +36,8 @@
 			{ id: 'nix', label: 'Nix flake' },
 			{ id: 'from-source', label: 'From source' },
 			{ id: 'shell-completion', label: 'Shell completion' },
-			{ id: 'verify', label: 'Verify installation' }
+			{ id: 'verify', label: 'Verify installation' },
+			{ id: 'updating', label: 'Updating' }
 		],
 		rules: [
 			{ id: 'overview', label: 'Overview' },
@@ -87,6 +88,7 @@
 			{ id: 'backup', label: 'backup' },
 			{ id: 'doctor', label: 'doctor' },
 			{ id: 'audit', label: 'audit' },
+			{ id: 'update', label: 'update' },
 			{ id: 'version', label: 'version' },
 			{ id: 'completion', label: 'completion' }
 		],
