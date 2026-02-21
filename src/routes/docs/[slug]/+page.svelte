@@ -202,7 +202,7 @@
 			{:else if data.guide.slug === 'configuration'}
 				<Configuration codeSnippets={data.codeSnippets} />
 			{:else if data.guide.slug === 'environment-variables'}
-				<EnvironmentVariables codeSnippets={data.codeSnippets} />
+				<EnvironmentVariables />
 			{:else if data.guide.slug === 'troubleshooting'}
 				<Troubleshooting codeSnippets={data.codeSnippets} />
 			{:else if data.guide.slug === 'faq'}

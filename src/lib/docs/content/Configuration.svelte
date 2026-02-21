@@ -21,13 +21,25 @@
 
 <section id="file-locations" class="space-y-4">
 	<h2 class="text-xl font-semibold">File locations</h2>
-	<CodeBlock html={codeSnippets.fileLocations} />
+	<div class="overflow-x-auto">
+		<table class="w-full text-sm">
+			<thead>
+				<tr class="border-b border-border">
+					<th class="py-2 pr-4 text-left font-medium">Path</th>
+					<th class="py-2 text-left font-medium">Description</th>
+				</tr>
+			</thead>
+			<tbody class="text-muted-foreground">
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>$XDG_CONFIG_HOME/klaudiush/config.toml</code></td><td class="py-2">Global config (default <code>~/.config/klaudiush/</code>)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>.klaudiush/config.toml</code></td><td class="py-2">Project config (this repo)</td></tr>
+				<tr><td class="py-2 pr-4"><code>klaudiush.toml</code></td><td class="py-2">Alternative project config location</td></tr>
+			</tbody>
+		</table>
+	</div>
 	<p class="text-muted-foreground">
-		The global config follows the <a href="https://specifications.freedesktop.org/basedir-spec/latest/" class="underline underline-offset-2 hover:text-foreground">XDG Base Directory</a> specification
-		and lives at <code>$XDG_CONFIG_HOME/klaudiush/config.toml</code> (default
-		<code>~/.config/klaudiush/config.toml</code>). Project configs sit in the repo root
-		(either in a <code>.klaudiush/</code> directory or as a standalone file) and override
-		global settings for that repo.
+		The global config follows the <a href="https://specifications.freedesktop.org/basedir-spec/latest/" class="underline underline-offset-2 hover:text-foreground">XDG Base Directory</a> specification.
+		Project configs sit in the repo root (either in a <code>.klaudiush/</code> directory
+		or as a standalone file) and override global settings for that repo.
 	</p>
 	<Callout type="info" title="Automatic migration">
 		<p>If you're upgrading from a version that used <code>~/.klaudiush/config.toml</code>,
@@ -134,7 +146,7 @@
 </section>
 
 <style>
-	code {
+	code:not(pre code) {
 		background: oklch(0.96 0.005 67);
 		border: 1px solid oklch(0.9 0.005 67);
 		border-radius: 0.25rem;
@@ -142,5 +154,7 @@
 		font-size: 0.85em;
 		font-weight: 500;
 		color: oklch(0.25 0.01 67);
+		display: inline-block;
+		vertical-align: middle;
 	}
 </style>

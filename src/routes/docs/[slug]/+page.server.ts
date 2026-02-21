@@ -805,12 +805,12 @@ KLAUDIUSH_VALIDATORS_FILE_WORKFLOW_ENFORCE_DIGEST_PINNING=true`
 		},
 		standardVars: {
 			lang: 'bash',
-			code: `NO_COLOR=1                    # Disable colored output
-KLAUDIUSH_USE_SDK_GIT=true   # Use go-git SDK instead of CLI
-GH_TOKEN=...                 # GitHub API token for workflow validator
+			code: `NO_COLOR=1                     # Disable colored output
+KLAUDIUSH_USE_SDK_GIT=true     # Use go-git SDK instead of CLI
+GH_TOKEN=...                   # GitHub API token for workflow validator
 KLAUDIUSH_LOG_FILE=/tmp/k.log  # Custom log file path (overrides XDG)
-XDG_CONFIG_HOME=~/.config    # XDG config base (global config lives here)
-XDG_DATA_HOME=~/.local/share # XDG data base (state, crash dumps, plugins)
+XDG_CONFIG_HOME=~/.config      # XDG config base (global config lives here)
+XDG_DATA_HOME=~/.local/share   # XDG data base (state, crash dumps, plugins)
 XDG_STATE_HOME=~/.local/state  # XDG state base (logs, audit trail)`
 		},
 		valueTypes: {
