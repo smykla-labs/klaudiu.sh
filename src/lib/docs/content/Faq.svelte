@@ -103,9 +103,7 @@
 
 	<h3 class="text-lg font-medium">Where are logs and state files stored?</h3>
 	<p class="text-muted-foreground">
-		Logs go to <code>~/.claude/hooks/dispatcher.log</code>. Session state is at
-		<code>~/.klaudiush/session_state.json</code>. Audit logs are at
-		<code>~/.klaudiush/session_audit.jsonl</code> and
+		Logs go to <code>~/.claude/hooks/dispatcher.log</code>. Exception audit logs are at
 		<code>~/.klaudiush/exception_audit.jsonl</code>.
 	</p>
 </section>

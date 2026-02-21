@@ -75,7 +75,7 @@
 	<p class="text-muted-foreground">
 		The schema is generated from the Go config structs and stays in sync with each release.
 		It covers all top-level sections (<code>validators</code>, <code>rules</code>,
-		<code>plugins</code>, <code>backup</code>, <code>session</code>, <code>exceptions</code>,
+		<code>plugins</code>, <code>backup</code>, <code>exceptions</code>,
 		<code>patterns</code>, <code>crash_dump</code>, <code>global</code>) and their full
 		type hierarchy.
 	</p>

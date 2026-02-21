@@ -35,7 +35,7 @@ SvelteKit app with adapter-node, deployed on fly.io.
 - `src/lib/errors/index.ts` - Error code validation, parsing, markdown loading
 - `src/lib/config.ts` - Site metadata, category definitions
 - `src/routes/docs/+page.svelte` - Docs hub with guide cards and ADR list
-- `src/routes/docs/[slug]/+page.svelte` - Guide detail page (rules, backup, plugins, sessions, exceptions)
+- `src/routes/docs/[slug]/+page.svelte` - Guide detail page (rules, backup, plugins, exceptions)
 - `src/routes/docs/[slug]/+page.server.ts` - Guide loader (validates slug, highlights code)
 - `src/routes/docs/changelog/` - Changelog (rendered from submodule CHANGELOG.md)
 - `src/routes/docs/adr/` - ADR listing and detail pages
@@ -59,7 +59,6 @@ SvelteKit app with adapter-node, deployed on fly.io.
 | `/docs/rules`                | Dynamic rules guide                              |
 | `/docs/backup`               | Backup system guide                              |
 | `/docs/plugins`              | Plugin development guide                         |
-| `/docs/sessions`             | Session tracking guide                           |
 | `/docs/exceptions`           | Exception workflow guide                         |
 | `/docs/cli`                  | CLI reference                                    |
 | `/docs/configuration`        | Configuration guide                              |
@@ -81,7 +80,7 @@ SvelteKit app with adapter-node, deployed on fly.io.
 | `/e/INVALID001`              | 404 - invalid prefix                             |
 | `/anything-else`             | 404                                              |
 
-Supported prefixes: `GIT`, `FILE`, `SEC`, `SHELL`, `GH`, `PLUG`, `SESS` (pattern: `^(GIT|FILE|SEC|SHELL|GH|PLUG|SESS)\d{3}$`)
+Supported prefixes: `GIT`, `FILE`, `SEC`, `SHELL`, `GH`, `PLUG` (pattern: `^(GIT|FILE|SEC|SHELL|GH|PLUG)\d{3}$`)
 
 ## Stack
 

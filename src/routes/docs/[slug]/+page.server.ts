@@ -316,57 +316,6 @@ if __name__ == "__main__":
     main()`
 		}
 	},
-	sessions: {
-		config: {
-			lang: 'toml',
-			code: `[session]
-enabled = true
-state_file = "~/.klaudiush/session_state.json"
-max_session_age = "24h"`
-		},
-		lifecycle: {
-			lang: 'text',
-			code: `1. git commit -m "fix"         # Missing -sS flag
-   \u2192 Denied: [GIT001] Missing signoff flag
-   \u2192 Session poisoned with GIT001
-
-2. git status                  # Next command
-   \u2192 Denied: [SESS001] Session poisoned by GIT001
-
-3. KLACK="SESS:GIT001" git commit -sS -m "fix"
-   \u2192 Session unpoisoned, command proceeds to validation`
-		},
-		unpoison: {
-			lang: 'bash',
-			code: `# Environment variable (recommended)
-KLACK="SESS:GIT001" git commit -sS -m "fix"
-
-# Shell comment
-git commit -sS -m "fix"  # SESS:GIT001
-
-# Multiple codes
-KLACK="SESS:GIT001,GIT002" git push origin feature`
-		},
-		auditConfig: {
-			lang: 'toml',
-			code: `[session.audit]
-enabled = true
-log_file = "~/.klaudiush/session_audit.jsonl"
-max_size_mb = 10
-max_age_days = 30`
-		},
-		auditView: {
-			lang: 'bash',
-			code: `# View recent entries
-tail ~/.klaudiush/session_audit.jsonl | jq
-
-# Filter by action
-jq 'select(.action == "Unpoison")' ~/.klaudiush/session_audit.jsonl
-
-# Filter by session
-jq 'select(.session_id == "abc-123")' ~/.klaudiush/session_audit.jsonl`
-		}
-	},
 	exceptions: {
 		config: {
 			lang: 'toml',
@@ -1024,7 +973,7 @@ Timeline:
 1. Claude Code sends hook event as JSON to stdin
 2. CLI parses flags, loads config, initializes subsystems
 3. JSON parser converts event to hook.Context
-4. Dispatcher checks session state, runs matched validators
+4. Dispatcher runs matched validators
 5. Registry matches validators via predicates
 6. Validators return Pass/Fail/Warn with error codes
 7. JSON response written to stdout`
@@ -1049,7 +998,6 @@ Timeline:
     \u2502   \u2514\u2500\u2500 notification/   # Notification validators
     \u251c\u2500\u2500 rules/              # Dynamic validation rules
     \u251c\u2500\u2500 exceptions/         # Exception workflow
-    \u251c\u2500\u2500 session/            # Session tracking
     \u251c\u2500\u2500 config/             # Configuration loading
     \u251c\u2500\u2500 doctor/             # Diagnostic system
     \u2514\u2500\u2500 backup/             # Config backup system`

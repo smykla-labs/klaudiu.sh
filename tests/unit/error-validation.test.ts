@@ -35,10 +35,6 @@ describe('isValidErrorCode', () => {
 		expect(isValidErrorCode('PLUG001')).toBe(true);
 	});
 
-	it('accepts SESS001', () => {
-		expect(isValidErrorCode('SESS001')).toBe(true);
-	});
-
 	it('accepts GIT016', () => {
 		expect(isValidErrorCode('GIT016')).toBe(true);
 	});
@@ -105,10 +101,6 @@ describe('parseCategory', () => {
 
 	it('parses PLUG category', () => {
 		expect(parseCategory('PLUG001')).toBe('PLUG');
-	});
-
-	it('parses SESS category', () => {
-		expect(parseCategory('SESS001')).toBe('SESS');
 	});
 
 	it('handles lowercase input', () => {

@@ -41,12 +41,6 @@ test('plugins guide renders', async ({ page }) => {
 	await expect(page.locator('h2', { hasText: 'Protocol reference' })).toBeVisible();
 });
 
-test('sessions guide renders', async ({ page }) => {
-	await page.goto('/docs/sessions');
-	await expect(page.locator('h1')).toContainText('Session tracking');
-	await expect(page.locator('h2', { hasText: 'Unpoisoning' })).toBeVisible();
-});
-
 test('exceptions guide renders', async ({ page }) => {
 	await page.goto('/docs/exceptions');
 	await expect(page.locator('h1')).toContainText('Exception workflow');

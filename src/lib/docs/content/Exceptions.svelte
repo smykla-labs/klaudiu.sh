@@ -52,9 +52,8 @@
 		<li>If any check fails: original block stands, audit entry written with denial reason</li>
 	</ol>
 	<Callout type="info">
-		<p>A successfully bypassed block becomes a non-blocking warning, so the session is not
-		poisoned. A failed bypass or missing token leaves the original block in place and the
-		session poisons as normal.</p>
+		<p>A successfully bypassed block becomes a non-blocking warning, so Claude Code can
+		continue. A failed bypass or missing token leaves the original block in place.</p>
 	</Callout>
 </section>
 
@@ -184,16 +183,6 @@
 		current project. Add <code>--state</code> to also show current rate limit counters.
 	</p>
 	<CodeBlock html={codeSnippets.debugCommands} />
-</section>
-
-<section id="session-integration" class="space-y-3">
-	<h2 class="text-xl font-semibold">Session integration</h2>
-	<p class="text-muted-foreground">
-		When a bypass succeeds, the blocking error is converted to a non-blocking warning, so the
-		<a href="/docs/sessions" class="underline underline-offset-2 hover:text-foreground">session</a>
-		is not poisoned and Claude Code can continue. When a bypass is denied or no token is
-		present, the original block stands and the session poisons as normal.
-	</p>
 </section>
 
 <section id="rules-integration" class="space-y-4">

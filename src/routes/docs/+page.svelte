@@ -9,7 +9,7 @@
 
 	const sections: { title: string; slugs: string[] }[] = [
 		{ title: 'Getting started', slugs: ['getting-started', 'installation'] },
-		{ title: 'Guides', slugs: ['rules', 'backup', 'plugins', 'sessions', 'exceptions'] },
+		{ title: 'Guides', slugs: ['rules', 'backup', 'plugins', 'exceptions'] },
 		{ title: 'Reference', slugs: ['cli', 'configuration', 'environment-variables'] },
 		{ title: 'More', slugs: ['troubleshooting', 'faq', 'security', 'architecture', 'migration'] }
 	];

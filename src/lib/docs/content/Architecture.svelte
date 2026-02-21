@@ -26,7 +26,6 @@
 	</p>
 	<ol class="list-decimal space-y-1 pl-6 text-sm text-muted-foreground">
 		<li>Parse the JSON hook event into a <code>hook.Context</code></li>
-		<li>Check session state - if poisoned, deny immediately with SESS001</li>
 		<li>Check exception tokens - if valid, convert block to warning</li>
 		<li>Query the registry for validators matching this context</li>
 		<li>Run matched validators and collect results</li>

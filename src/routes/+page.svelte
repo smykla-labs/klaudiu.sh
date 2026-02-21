@@ -184,7 +184,7 @@
 				<Card.Header>
 					<Card.Title>Documentation</Card.Title>
 					<Card.Description>
-						Guides for rules, backups, plugins, sessions, and exceptions.
+						Guides for rules, backups, plugins, and exceptions.
 					</Card.Description>
 				</Card.Header>
 				<Card.Content>

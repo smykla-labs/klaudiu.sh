@@ -8,7 +8,6 @@
 	import Rules from '$lib/docs/content/Rules.svelte';
 	import Backup from '$lib/docs/content/Backup.svelte';
 	import Plugins from '$lib/docs/content/Plugins.svelte';
-	import Sessions from '$lib/docs/content/Sessions.svelte';
 	import Exceptions from '$lib/docs/content/Exceptions.svelte';
 	import Cli from '$lib/docs/content/Cli.svelte';
 	import Configuration from '$lib/docs/content/Configuration.svelte';
@@ -67,15 +66,6 @@
 			{ id: 'python-example', label: 'Python example' },
 			{ id: 'best-practices', label: 'Best practices' }
 		],
-		sessions: [
-			{ id: 'overview', label: 'Overview' },
-			{ id: 'the-problem', label: 'The problem' },
-			{ id: 'configuration', label: 'Configuration' },
-			{ id: 'lifecycle', label: 'Session lifecycle' },
-			{ id: 'unpoisoning', label: 'Unpoisoning' },
-			{ id: 'audit', label: 'Audit logging' },
-			{ id: 'troubleshooting', label: 'Troubleshooting' }
-		],
 		exceptions: [
 			{ id: 'overview', label: 'Overview' },
 			{ id: 'quick-start', label: 'Quick start' },
@@ -85,7 +75,6 @@
 			{ id: 'rate-limiting', label: 'Rate limiting' },
 			{ id: 'audit', label: 'Audit logging' },
 			{ id: 'debug', label: 'Debug commands' },
-			{ id: 'session-integration', label: 'Session integration' },
 			{ id: 'rules-integration', label: 'Rules integration' },
 			{ id: 'examples', label: 'Examples' }
 		],
@@ -204,8 +193,6 @@
 				<Backup codeSnippets={data.codeSnippets} />
 			{:else if data.guide.slug === 'plugins'}
 				<Plugins codeSnippets={data.codeSnippets} />
-			{:else if data.guide.slug === 'sessions'}
-				<Sessions codeSnippets={data.codeSnippets} />
 			{:else if data.guide.slug === 'exceptions'}
 				<Exceptions codeSnippets={data.codeSnippets} />
 			{:else if data.guide.slug === 'cli'}

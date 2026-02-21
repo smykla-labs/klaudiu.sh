@@ -50,13 +50,6 @@ export const guides: GuideInfo[] = [
 		description: 'JSON stdin/stdout protocol, predicate matching, bash and Python examples.'
 	},
 	{
-		slug: 'sessions',
-		title: 'Session tracking',
-		subtitle: 'Fast-fail for poisoned sessions',
-		icon: 'Activity',
-		description: 'Session poisoning, unpoison tokens, audit logging, SESS001 error.'
-	},
-	{
 		slug: 'exceptions',
 		title: 'Exception workflow',
 		subtitle: 'Bypass validation with audit trail',
