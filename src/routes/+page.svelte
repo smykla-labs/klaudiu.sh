@@ -11,7 +11,8 @@
 		Settings,
 		Terminal,
 		Zap,
-		ArrowRight
+		ArrowRight,
+		Github
 	} from '@lucide/svelte';
 
 	let { data } = $props();
@@ -33,14 +34,14 @@
 			</p>
 			<div class="flex items-center justify-center gap-3">
 				<Button href="#install">Install</Button>
+				<Button variant="outline" href="/docs/">Docs</Button>
+				<Button variant="outline" href="/e/">Error docs</Button>
 				<Button
 					variant="outline"
 					href={siteConfig.github}
 					target="_blank"
-					rel="noopener noreferrer">GitHub</Button
+					rel="noopener noreferrer"><Github class="h-4 w-4" /> GitHub</Button
 				>
-				<Button variant="outline" href="/docs/">Docs</Button>
-				<Button variant="outline" href="/e/">Error docs</Button>
 			</div>
 		</div>
 	</section>

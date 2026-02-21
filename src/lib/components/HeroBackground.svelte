@@ -72,9 +72,9 @@
 		const lines: Line[] = [];
 		const cs = 1000;
 
-		const baseStartX = 100;
-		const baseStartY = -60;
-		const baseEndX = 2000;
+		const baseStartX = -500;
+		const baseStartY = -100;
+		const baseEndX = 2200;
 		const baseEndY = 600;
 
 		const waveAmp = 60 + rand(cs + 4) * 30;
@@ -113,7 +113,7 @@
 </script>
 
 <div class="hero-bg" aria-hidden="true">
-	<svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="overflow: visible">
 		{#each lines as line (line.d)}
 			<path d={line.d} stroke={line.color} stroke-width={line.width} opacity={line.opacity} />
 		{/each}
