@@ -132,8 +132,8 @@
 				</Card.Header>
 				<Card.Content>
 					<p class="text-sm text-muted-foreground">
-						&lt;100ms cold start, &lt;100us parser, &lt;50ms per validator, &lt;500ms full chain,
-						&lt;1ms per rule evaluation.
+						~60ms cold start, &lt;25us parser, &lt;50ms per validator, &lt;115ms full chain,
+						&lt;11us per rule evaluation.
 					</p>
 				</Card.Content>
 			</Card.Root>
@@ -178,8 +178,8 @@
 		</p>
 	</section>
 
-	<section class="flex justify-center">
-		<div class="grid w-full max-w-2xl gap-4 sm:grid-cols-2">
+	<section>
+		<div class="grid gap-4 sm:grid-cols-3">
 			<Card.Root class="text-center">
 				<Card.Header>
 					<Card.Title>Documentation</Card.Title>
@@ -190,6 +190,20 @@
 				<Card.Content>
 					<Button href="/docs/" class="gap-2">
 						Browse docs
+						<ArrowRight class="h-4 w-4" />
+					</Button>
+				</Card.Content>
+			</Card.Root>
+			<Card.Root class="text-center">
+				<Card.Header>
+					<Card.Title>Examples</Card.Title>
+					<Card.Description>
+						Ready-to-use config files, rules, and plugin templates.
+					</Card.Description>
+				</Card.Header>
+				<Card.Content>
+					<Button href="/docs/examples/" class="gap-2">
+						Browse examples
 						<ArrowRight class="h-4 w-4" />
 					</Button>
 				</Card.Content>
