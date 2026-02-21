@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { copyCode } from '$lib/actions/copy-code';
+	import { anchorHeadings } from '$lib/actions/anchor-headings';
 
 	interface Props {
 		children: Snippet;
@@ -9,7 +10,7 @@
 	let { children }: Props = $props();
 </script>
 
-<article class="markdown-content prose prose-stone max-w-none dark:prose-invert" use:copyCode>
+<article class="markdown-content prose prose-stone max-w-none dark:prose-invert" use:copyCode use:anchorHeadings>
 	{@render children()}
 </article>
 

@@ -4,6 +4,7 @@ import { Marked } from 'marked';
 import markedShiki from 'marked-shiki';
 import { getHighlighter } from '$lib/highlight.server';
 import { isValidErrorCode, parseCategory, parseTitleFromMarkdown, type ErrorDoc } from './index';
+import { headingIds } from '$lib/markdown/heading-ids';
 
 const ERRORS_DIR = resolve('klaudiush/docs/errors');
 
@@ -18,7 +19,8 @@ async function getMarkedInstance() {
 					theme: 'github-light'
 				});
 			}
-		})
+		}),
+		headingIds()
 	);
 	return instance;
 }

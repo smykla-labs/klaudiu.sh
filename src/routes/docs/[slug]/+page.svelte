@@ -17,6 +17,7 @@
 	import Security from '$lib/docs/content/Security.svelte';
 	import Architecture from '$lib/docs/content/Architecture.svelte';
 	import Migration from '$lib/docs/content/Migration.svelte';
+	import { anchorHeadings } from '$lib/actions/anchor-headings';
 
 	let { data } = $props();
 
@@ -182,7 +183,7 @@
 			</ul>
 		</Collapsible>
 
-		<div class="space-y-10">
+		<div class="space-y-10" use:anchorHeadings>
 			{#if data.guide.slug === 'getting-started'}
 				<GettingStarted codeSnippets={data.codeSnippets} />
 			{:else if data.guide.slug === 'installation'}

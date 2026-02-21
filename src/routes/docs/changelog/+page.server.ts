@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { Marked } from 'marked';
 import markedShiki from 'marked-shiki';
 import { getHighlighter } from '$lib/highlight.server';
+import { headingIds } from '$lib/markdown/heading-ids';
 import type { PageServerLoad } from './$types';
 
 const CHANGELOG_PATH = resolve('klaudiush/CHANGELOG.md');
@@ -24,7 +25,8 @@ export const load: PageServerLoad = async () => {
 					theme: 'github-light'
 				});
 			}
-		})
+		}),
+		headingIds()
 	);
 
 	const html = await marked.parse(body);
