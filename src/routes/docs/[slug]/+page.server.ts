@@ -673,7 +673,7 @@ klaudiush update --to v1.18.0 --check  # Check if specific version exists`
 	configuration: {
 		fileLocations: {
 			lang: 'text',
-			code: `$XDG_CONFIG_HOME/klaudiush/config.toml   # Global config (default: ~/.config/klaudiush/)
+			code: `$XDG_CONFIG_HOME/klaudiush/config.toml  # Global config (default: ~/.config/klaudiush/)
 .klaudiush/config.toml                  # Project config (this repo)
 klaudiush.toml                          # Alternative project config location`
 		},
