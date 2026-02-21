@@ -25,7 +25,6 @@
 		'getting-started': [
 			{ id: 'overview', label: 'Overview' },
 			{ id: 'install', label: 'Install klaudiush' },
-			{ id: 'configure-hook', label: 'Configure the hook' },
 			{ id: 'first-validation', label: 'First validation' },
 			{ id: 'whats-next', label: "What's next" }
 		],

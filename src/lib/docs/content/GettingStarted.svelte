@@ -14,8 +14,7 @@
 	<p class="text-muted-foreground">
 		klaudiush is a validation dispatcher for Claude Code hooks. It intercepts tool calls
 		(git commits, file writes, bash commands) and validates them against configurable rules
-		before they execute. This guide covers install, hook setup, and your first
-		validated commit.
+		before they execute. This guide covers install and your first validated commit.
 	</p>
 </section>
 
@@ -28,20 +27,10 @@
 	</p>
 	<CodeBlock html={codeSnippets.install} />
 	<p class="text-muted-foreground">
-		After installing, run the init command to create a global config file. The interactive
-		prompts detect your git author info and set up defaults.
+		After installing, run the init command. It creates a global config and registers the
+		hooks in <code>~/.claude/settings.json</code> automatically.
 	</p>
 	<CodeBlock html={codeSnippets.initGlobal} />
-</section>
-
-<section id="configure-hook" class="space-y-4">
-	<h2 class="text-xl font-semibold">Configure the hook</h2>
-	<p class="text-muted-foreground">
-		Claude Code needs to know about klaudiush. Add hook entries to your
-		<code>~/.claude/settings.json</code> file. The PreToolUse hooks run before tool calls,
-		and the Notification hook handles bell notifications.
-	</p>
-	<CodeBlock html={codeSnippets.hookConfig} />
 	<Callout type="info" title="Hook timeout">
 		<p>File validators (markdown, terraform, shellcheck) run external tools. Set the hook
 		timeout to at least 30 seconds if you enable them.</p>
