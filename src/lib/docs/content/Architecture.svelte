@@ -14,9 +14,18 @@
 		klaudiush is a Go binary that acts as a validation dispatcher. Claude Code sends hook
 		events as JSON to stdin, klaudiush validates the operation through a pipeline of
 		matchers and validators, and returns a JSON response to stdout. The whole process runs
-		synchronously in under 500ms.
+		synchronously in under 115ms<sup><a href="#footnote-1" class="text-muted-foreground hover:text-foreground">1</a></sup>.
 	</p>
 	<CodeBlock html={codeSnippets.flow} />
+	<ol class="list-decimal space-y-1 pl-6 text-sm text-muted-foreground">
+		<li>Claude Code sends hook event as JSON to stdin</li>
+		<li>CLI parses flags, loads config, initializes subsystems</li>
+		<li>JSON parser converts event to <code>hook.Context</code></li>
+		<li>Dispatcher runs matched validators</li>
+		<li>Registry matches validators via predicates</li>
+		<li>Validators return Pass/Fail/Warn with error codes</li>
+		<li>JSON response written to stdout</li>
+	</ol>
 </section>
 
 <section id="dispatcher" class="space-y-4">
@@ -100,6 +109,13 @@
 	</p>
 	<CodeBlock html={codeSnippets.directoryLayout} />
 </section>
+
+<footer class="border-t border-border pt-4 mt-8">
+	<p id="footnote-1" class="text-xs text-muted-foreground">
+		<sup>1</sup> Measured on Apple M3 Max, CLI git backend, hyperfine mean over 30 runs.
+		Full git commit validation (pass, all validators) completes in 112ms +/- 6ms.
+	</p>
+</footer>
 
 <style>
 	code {

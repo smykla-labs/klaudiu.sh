@@ -976,15 +976,7 @@ Timeline:
 	architecture: {
 		flow: {
 			lang: 'text',
-			code: `Claude Code JSON \u2192 CLI \u2192 JSON Parser \u2192 Dispatcher \u2192 Registry \u2192 Validators \u2192 Result
-
-1. Claude Code sends hook event as JSON to stdin
-2. CLI parses flags, loads config, initializes subsystems
-3. JSON parser converts event to hook.Context
-4. Dispatcher runs matched validators
-5. Registry matches validators via predicates
-6. Validators return Pass/Fail/Warn with error codes
-7. JSON response written to stdout`
+			code: `Claude Code JSON \u2192 CLI \u2192 JSON Parser \u2192 Dispatcher \u2192 Registry \u2192 Validators \u2192 Result`
 		},
 		directoryLayout: {
 			lang: 'text',
@@ -1025,7 +1017,7 @@ Timeline:
 		predicates: {
 			lang: 'text',
 			code: `Predicate types:
-  EventTypeIs     Match hook event (PreToolUse, PostToolUse, Notification)
+  EventTypeIs      Match hook event (PreToolUse, PostToolUse, Notification)
   ToolTypeIs       Match tool name (Bash, Write, Edit)
   CommandContains  Match command substring
   FileExtensionIs  Match file extension (.md, .tf, .go)
