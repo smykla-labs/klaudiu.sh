@@ -148,7 +148,7 @@
 	<h2 class="text-xl font-semibold">Parser system</h2>
 	<p class="text-muted-foreground">
 		klaudiush includes parsers for bash commands and git operations. The bash parser uses
-		<code>mvdan.cc/sh</code> for AST parsing - it understands redirects, pipes, subshells,
+		<code class="whitespace-nowrap">mvdan.cc/sh</code> for AST parsing - it understands redirects, pipes, subshells,
 		and command substitution at a structural level rather than with regex. The git parser
 		extracts commands, flags, and arguments from git CLI invocations.
 	</p>
