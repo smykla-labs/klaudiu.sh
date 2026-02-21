@@ -86,6 +86,85 @@
 					</p>
 				</section>
 			</div>
+		{:else if data.adr.id === '0002'}
+			<div class="space-y-6 text-sm leading-relaxed text-muted-foreground">
+				<section class="space-y-3">
+					<h2 class="text-xl font-semibold text-foreground">Context</h2>
+					<p>
+						All klaudiush file paths were hardcoded to <code>~/.klaudiush/</code> or
+						<code>~/.claude/hooks/</code>. Each component (exceptions, crashdump, patterns, plugins)
+						had its own tilde expansion code - five duplicate implementations across the codebase with
+						no single place managing paths.
+					</p>
+					<p>
+						The <a
+							href="https://specifications.freedesktop.org/basedir-spec/latest/"
+							class="underline">XDG Base Directory Specification</a
+						> is the standard convention for organizing user-level files by purpose (config vs data vs
+						state vs cache). Most CLI tools on Linux and macOS follow it.
+					</p>
+				</section>
+
+				<section class="space-y-3">
+					<h2 class="text-xl font-semibold text-foreground">Decision</h2>
+					<p>
+						Adopt XDG with automatic migration from legacy paths. A new <code>internal/xdg/</code> package
+						becomes the single source of truth for every path klaudiush touches on disk.
+					</p>
+					<div class="overflow-x-auto">
+						<table class="w-full text-left text-xs">
+							<thead>
+								<tr class="border-b border-border">
+									<th class="pb-2 pr-4 font-semibold text-foreground">XDG var</th>
+									<th class="pb-2 pr-4 font-semibold text-foreground">Default</th>
+									<th class="pb-2 font-semibold text-foreground">klaudiush subdir</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="border-b border-border/50">
+									<td class="py-1.5 pr-4"><code>XDG_CONFIG_HOME</code></td>
+									<td class="py-1.5 pr-4"><code>~/.config</code></td>
+									<td class="py-1.5"><code>klaudiush/</code></td>
+								</tr>
+								<tr class="border-b border-border/50">
+									<td class="py-1.5 pr-4"><code>XDG_DATA_HOME</code></td>
+									<td class="py-1.5 pr-4"><code>~/.local/share</code></td>
+									<td class="py-1.5"><code>klaudiush/</code></td>
+								</tr>
+								<tr>
+									<td class="py-1.5 pr-4"><code>XDG_STATE_HOME</code></td>
+									<td class="py-1.5 pr-4"><code>~/.local/state</code></td>
+									<td class="py-1.5"><code>klaudiush/</code></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p>
+						On first run after upgrade, klaudiush detects <code>~/.klaudiush/</code>, moves files to
+						their XDG locations, and leaves symlinks at the legacy paths for backward compatibility.
+						Migration is idempotent.
+					</p>
+					<p>
+						<code>xdg.ResolveFile(xdgPath, legacyPath)</code> checks the XDG location first and falls
+						back to the legacy path if the file exists only there. New files always go to XDG paths.
+					</p>
+				</section>
+
+				<section class="space-y-3">
+					<h2 class="text-xl font-semibold text-foreground">Consequences</h2>
+					<p>
+						Five tilde expansion implementations replaced by one package. XDG env vars
+						(<code>XDG_CONFIG_HOME</code>, etc.) work as expected. <code>KLAUDIUSH_LOG_FILE</code> added
+						for custom log location. <code>klaudiush doctor --category xdg</code> detects and fixes
+						path issues.
+					</p>
+					<p>
+						Symlinks remain at legacy locations after migration. Users who scripted against
+						<code>~/.klaudiush/</code> paths need to update - symlinks cover config and log, but not
+						all paths.
+					</p>
+				</section>
+			</div>
 		{/if}
 	</div>
 </div>
