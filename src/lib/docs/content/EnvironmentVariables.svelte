@@ -47,7 +47,11 @@
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>KLAUDIUSH_USE_SDK_GIT</code></td><td class="py-2">Use go-git SDK instead of git CLI</td></tr>
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>GH_TOKEN</code></td><td class="py-2">GitHub API token for workflow validator and self-update (avoids rate limits)</td></tr>
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>GITHUB_TOKEN</code></td><td class="py-2">Alias for GH_TOKEN. Falls back to <code>gh auth token</code> if neither is set</td></tr>
-				<tr><td class="py-2 pr-4"><code>KLACK</code></td><td class="py-2">Exception token (EXC:CODE:reason)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>KLACK</code></td><td class="py-2">Exception token (EXC:CODE:reason)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>KLAUDIUSH_LOG_FILE</code></td><td class="py-2">Custom log file path (overrides XDG state directory)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>XDG_CONFIG_HOME</code></td><td class="py-2">XDG config base directory (default <code>~/.config</code>)</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>XDG_DATA_HOME</code></td><td class="py-2">XDG data base directory (default <code>~/.local/share</code>)</td></tr>
+				<tr><td class="py-2 pr-4"><code>XDG_STATE_HOME</code></td><td class="py-2">XDG state base directory (default <code>~/.local/state</code>)</td></tr>
 			</tbody>
 		</table>
 	</div>
@@ -62,7 +66,7 @@
 		<li>CLI flags (<code>--disable=commit</code>)</li>
 		<li>Environment variables (<code>KLAUDIUSH_VALIDATORS_GIT_COMMIT_ENABLED=false</code>)</li>
 		<li>Project config (<code>.klaudiush/config.toml</code>)</li>
-		<li>Global config (<code>~/.klaudiush/config.toml</code>)</li>
+		<li>Global config (<code>$XDG_CONFIG_HOME/klaudiush/config.toml</code>)</li>
 		<li>Built-in defaults</li>
 	</ol>
 	<h3 class="text-lg font-medium">Value types</h3>

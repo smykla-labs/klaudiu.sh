@@ -17,8 +17,9 @@
 	</p>
 	<p class="text-muted-foreground">
 		Backups are automatic and deduplication prevents storing identical content twice.
-		Everything lives in <code>~/.klaudiush/.backups/</code> so there's one place to manage
-		all your configs.
+		Everything lives in <code>$XDG_DATA_HOME/klaudiush/backups/</code> (default
+		<code>~/.local/share/klaudiush/backups/</code>) so there's one place to manage all
+		your configs.
 	</p>
 </section>
 

@@ -23,10 +23,18 @@
 	<h2 class="text-xl font-semibold">File locations</h2>
 	<CodeBlock html={codeSnippets.fileLocations} />
 	<p class="text-muted-foreground">
-		The global config lives in your home directory and applies to every project. Project
-		configs sit in the repo root (either in a <code>.klaudiush/</code> directory or as a
-		standalone file) and override global settings for that repo.
+		The global config follows the <a href="https://specifications.freedesktop.org/basedir-spec/latest/" class="underline underline-offset-2 hover:text-foreground">XDG Base Directory</a> specification
+		and lives at <code>$XDG_CONFIG_HOME/klaudiush/config.toml</code> (default
+		<code>~/.config/klaudiush/config.toml</code>). Project configs sit in the repo root
+		(either in a <code>.klaudiush/</code> directory or as a standalone file) and override
+		global settings for that repo.
 	</p>
+	<Callout type="info" title="Automatic migration">
+		<p>If you're upgrading from a version that used <code>~/.klaudiush/config.toml</code>,
+		klaudiush migrates your files to XDG locations on first run. A symlink is left at the
+		old path for backward compatibility. If the file exists at <code>~/.klaudiush/config.toml</code>
+		but not the XDG location, klaudiush still reads it as a fallback.</p>
+	</Callout>
 	<p class="text-muted-foreground">
 		You can also point to custom config paths with CLI flags:
 	</p>
@@ -42,7 +50,7 @@
 		<li>CLI flags (<code>--disable</code>, <code>--config</code>)</li>
 		<li>Environment variables (<code>KLAUDIUSH_*</code>)</li>
 		<li>Project config (<code>.klaudiush/config.toml</code>)</li>
-		<li>Global config (<code>~/.klaudiush/config.toml</code>)</li>
+		<li>Global config (<code>$XDG_CONFIG_HOME/klaudiush/config.toml</code>)</li>
 		<li>Built-in defaults</li>
 	</ol>
 	<p class="text-muted-foreground">

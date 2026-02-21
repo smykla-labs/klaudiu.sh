@@ -18,11 +18,56 @@
 	</p>
 </section>
 
-<section id="v0-2" class="space-y-4">
-	<h2 class="text-xl font-semibold">v1.17 to v1.18</h2>
+<section id="v1-24" class="space-y-4">
+	<h2 class="text-xl font-semibold">
+		<a href="https://github.com/smykla-skalski/klaudiush/releases/tag/v1.24.0" class="underline underline-offset-2 hover:text-foreground">v1.24.0</a>
+		- XDG base directory migration
+	</h2>
 	<p class="text-muted-foreground">
-		v1.18 changed how klaudiush communicates with Claude Code. Instead of exit codes,
-		it now uses JSON stdout for all responses. This is the only breaking change so far.
+		v1.24.0 moves all global/user-level paths to follow the
+		<a href="https://specifications.freedesktop.org/basedir-spec/latest/" class="underline underline-offset-2 hover:text-foreground">XDG Base Directory</a>
+		specification. Files that previously lived under <code>~/.klaudiush/</code> are
+		split across config, data, and state directories.
+	</p>
+	<CodeBlock html={codeSnippets.xdgPathMapping} />
+	<CodeBlock html={codeSnippets.xdgDefaults} />
+
+	<h3 class="text-lg font-medium">What happens on upgrade</h3>
+	<p class="text-muted-foreground">
+		On first run after upgrade, klaudiush detects the old <code>~/.klaudiush/</code>
+		directory and moves files to their XDG locations. The migration is automatic and
+		idempotent - running it twice is safe.
+	</p>
+	<ul class="list-disc space-y-1 pl-6 text-sm text-muted-foreground">
+		<li>Files are moved, not copied</li>
+		<li>Symlinks are created at <code>~/.klaudiush/config.toml</code> and
+			<code>~/.claude/hooks/dispatcher.log</code> for backward compatibility</li>
+		<li>Files that already exist at the destination are skipped</li>
+		<li>Custom absolute paths in your config are not affected</li>
+		<li>Project-local paths (<code>.klaudiush/config.toml</code>, <code>.klaudiush/patterns.json</code>,
+			<code>.klaudiush/plugins/</code>) are unchanged</li>
+	</ul>
+
+	<h3 class="text-lg font-medium">Verifying the migration</h3>
+	<p class="text-muted-foreground">
+		Run the XDG doctor category to check migration status and directory permissions:
+	</p>
+	<CodeBlock html={codeSnippets.xdgDoctor} />
+
+	<Callout type="info" title="New environment variable">
+		<p><code>KLAUDIUSH_LOG_FILE</code> overrides the log file location. When set,
+		klaudiush writes logs to this path instead of the XDG state directory.</p>
+	</Callout>
+</section>
+
+<section id="v1-18" class="space-y-4">
+	<h2 class="text-xl font-semibold">
+		<a href="https://github.com/smykla-skalski/klaudiush/releases/tag/v1.18.0" class="underline underline-offset-2 hover:text-foreground">v1.18.0</a>
+		- JSON stdout output
+	</h2>
+	<p class="text-muted-foreground">
+		v1.18.0 changed how klaudiush communicates with Claude Code. Instead of exit codes,
+		it uses JSON stdout for all responses.
 	</p>
 	<CodeBlock html={codeSnippets.jsonMigration} />
 	<Callout type="warning" title="Exit code change">
@@ -35,13 +80,10 @@
 		See <a href="/docs/adr/0001" class="underline underline-offset-2 hover:text-foreground">ADR-0001</a> for
 		the full rationale.
 	</p>
-</section>
 
-<section id="json-stdout" class="space-y-4">
-	<h2 class="text-xl font-semibold">JSON stdout migration</h2>
+	<h3 class="text-lg font-medium">JSON output format</h3>
 	<p class="text-muted-foreground">
-		The new JSON output format includes separate fields for model-facing and user-facing
-		messages:
+		The JSON output includes separate fields for model-facing and user-facing messages:
 	</p>
 	<CodeBlock html={codeSnippets.jsonOutput} />
 

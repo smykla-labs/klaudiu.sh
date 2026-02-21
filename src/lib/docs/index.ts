@@ -26,7 +26,7 @@ export const guides: GuideInfo[] = [
 		title: 'Installation',
 		subtitle: 'All install methods and shell setup',
 		icon: 'Download',
-		description: 'Homebrew, install.sh, Nix flake, from source. Shell completion for bash, zsh, and fish.'
+		description: 'Homebrew, install.sh, Nix flake, and shell completions.'
 	},
 	{
 		slug: 'rules',

@@ -20,8 +20,9 @@
 <section id="doctor" class="space-y-4">
 	<h2 class="text-xl font-semibold">Doctor command</h2>
 	<p class="text-muted-foreground">
-		The doctor command runs automated diagnostics across five categories: binary availability,
-		hook registration, config validity, backup health, and tool dependencies.
+		The doctor command runs automated diagnostics across six categories: binary availability,
+		hook registration, config validity, backup health, tool dependencies, and XDG directory
+		layout.
 	</p>
 	<CodeBlock html={codeSnippets.doctorCommand} />
 	<p class="text-muted-foreground">
@@ -71,8 +72,9 @@
 	<h2 class="text-xl font-semibold">Crash dumps</h2>
 	<p class="text-muted-foreground">
 		klaudiush has automatic panic recovery. If the dispatcher crashes, it writes a dump
-		to <code>~/.klaudiush/crash_dumps/</code> and exits with code 3 (so Claude Code
-		allows the operation through).
+		to <code>$XDG_DATA_HOME/klaudiush/crash_dumps/</code> (default
+		<code>~/.local/share/klaudiush/crash_dumps/</code>) and exits with code 3 (so
+		Claude Code allows the operation through).
 	</p>
 	<CodeBlock html={codeSnippets.crashDumps} />
 </section>
@@ -81,7 +83,11 @@
 	<h2 class="text-xl font-semibold">Debug logging</h2>
 	<p class="text-muted-foreground">
 		Enable debug or trace logging to see what klaudiush is doing. Logs are written to
-		<code>~/.claude/hooks/dispatcher.log</code>.
+		<code>$XDG_STATE_HOME/klaudiush/dispatcher.log</code> (default
+		<code>~/.local/state/klaudiush/dispatcher.log</code>). Set the
+		<code>KLAUDIUSH_LOG_FILE</code> environment variable to write logs to a custom path
+		instead. The old symlink at <code>~/.claude/hooks/dispatcher.log</code> still works
+		after migration.
 	</p>
 	<CodeBlock html={codeSnippets.debugLogging} />
 </section>

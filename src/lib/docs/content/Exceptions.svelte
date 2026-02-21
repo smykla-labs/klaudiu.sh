@@ -147,7 +147,8 @@
 		Hourly windows reset on the hour. Daily windows reset at local midnight, not UTC, so
 		limits turn over when the day changes in the user's timezone. Rate limit state is
 		per-project: each project gets its own counters at
-		<code>~/.klaudiush/exceptions/state_&lt;hash&gt;.json</code>, derived from the project
+		<code>$XDG_DATA_HOME/klaudiush/exceptions/state_&lt;hash&gt;.json</code> (default
+		<code>~/.local/share/klaudiush/exceptions/</code>), derived from the project
 		directory path. One project's exception usage does not affect another.
 	</p>
 </section>
@@ -156,8 +157,9 @@
 	<h2 class="text-xl font-semibold">Audit logging</h2>
 	<p class="text-muted-foreground">
 		Every exception attempt - allowed or denied - is appended as a JSON line to
-		<code>~/.klaudiush/exception_audit.jsonl</code>. The audit log is global across all
-		projects. Entries are fsynced to disk before returning, so no bypass goes unrecorded
+		<code>$XDG_STATE_HOME/klaudiush/exception_audit.jsonl</code> (default
+		<code>~/.local/state/klaudiush/exception_audit.jsonl</code>). The audit log is
+		global across all projects. Entries are fsynced to disk before returning, so no bypass goes unrecorded
 		even if the process exits immediately after.
 	</p>
 	<p class="text-muted-foreground">Each entry includes:</p>

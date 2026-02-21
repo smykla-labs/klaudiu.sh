@@ -30,8 +30,9 @@
 	</p>
 	<CodeBlock html={codeSnippets.quickStart} />
 	<p class="text-muted-foreground">
-		Global rules go in <code>~/.klaudiush/config.toml</code> and apply to all projects. Project
-		rules override global rules when they share the same name.
+		Global rules go in <code>$XDG_CONFIG_HOME/klaudiush/config.toml</code> (default
+		<code>~/.config/klaudiush/config.toml</code>) and apply to all projects. Project rules
+		override global rules when they share the same name.
 	</p>
 	<CodeBlock html={codeSnippets.globalRule} />
 	<p class="text-muted-foreground">Verify your rules load with debug logging:</p>
@@ -113,7 +114,7 @@
 		<li>CLI flags</li>
 		<li>Environment variables (<code>KLAUDIUSH_*</code>)</li>
 		<li>Project config (<code>.klaudiush/config.toml</code>)</li>
-		<li>Global config (<code>~/.klaudiush/config.toml</code>)</li>
+		<li>Global config (<code>$XDG_CONFIG_HOME/klaudiush/config.toml</code>)</li>
 		<li>Built-in defaults</li>
 	</ol>
 	<p class="text-muted-foreground">

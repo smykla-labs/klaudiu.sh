@@ -26,7 +26,7 @@ message = "Direct push to main is not allowed. Use a pull request."`
 		},
 		globalRule: {
 			lang: 'toml',
-			code: `# ~/.klaudiush/config.toml
+			code: `# $XDG_CONFIG_HOME/klaudiush/config.toml
 [[rules.rules]]
 name = "warn-force-push"
 description = "Flag force pushes"
@@ -190,7 +190,7 @@ klaudiush backup restore abc123def456 --force`
 		},
 		storageLayout: {
 			lang: 'text',
-			code: `~/.klaudiush/.backups/
+			code: `$XDG_DATA_HOME/klaudiush/backups/       # default: ~/.local/share/klaudiush/backups/
 \u251c\u2500\u2500 global/
 \u2502   \u251c\u2500\u2500 snapshots/
 \u2502   \u2502   \u251c\u2500\u2500 001_20250102_150405.full.toml
@@ -249,8 +249,8 @@ echo '{"passed":true,"should_block":false}'`
 		install: {
 			lang: 'bash',
 			code: `chmod +x my-plugin.sh
-mkdir -p ~/.klaudiush/plugins
-cp my-plugin.sh ~/.klaudiush/plugins/`
+mkdir -p "\${XDG_DATA_HOME:-$HOME/.local/share}"/klaudiush/plugins
+cp my-plugin.sh "\${XDG_DATA_HOME:-$HOME/.local/share}"/klaudiush/plugins/`
 		},
 		pluginConfig: {
 			lang: 'toml',
@@ -260,7 +260,7 @@ enabled = true
 [[plugins.plugins]]
 name = "my-plugin"
 type = "exec"
-path = "~/.klaudiush/plugins/my-plugin.sh"
+path = "~/.local/share/klaudiush/plugins/my-plugin.sh"
 
 [plugins.plugins.predicate]
 event_types = ["PreToolUse"]
@@ -673,9 +673,9 @@ klaudiush update --to v1.18.0 --check  # Check if specific version exists`
 	configuration: {
 		fileLocations: {
 			lang: 'text',
-			code: `~/.klaudiush/config.toml          # Global config (all projects)
-.klaudiush/config.toml            # Project config (this repo)
-klaudiush.toml                    # Alternative project config location`
+			code: `$XDG_CONFIG_HOME/klaudiush/config.toml   # Global config (default: ~/.config/klaudiush/)
+.klaudiush/config.toml                  # Project config (this repo)
+klaudiush.toml                          # Alternative project config location`
 		},
 		cliOverrides: {
 			lang: 'bash',
@@ -752,7 +752,7 @@ yq -p toml -o json .klaudiush/config.toml | \\
 		},
 		deepMerge: {
 			lang: 'toml',
-			code: `# Global: ~/.klaudiush/config.toml
+			code: `# Global: $XDG_CONFIG_HOME/klaudiush/config.toml
 [validators.git.commit.message]
 title_max_length = 50
 require_scope = true
@@ -805,9 +805,13 @@ KLAUDIUSH_VALIDATORS_FILE_WORKFLOW_ENFORCE_DIGEST_PINNING=true`
 		},
 		standardVars: {
 			lang: 'bash',
-			code: `NO_COLOR=1              # Disable colored output
+			code: `NO_COLOR=1                    # Disable colored output
 KLAUDIUSH_USE_SDK_GIT=true   # Use go-git SDK instead of CLI
-GH_TOKEN=...            # GitHub API token for workflow validator`
+GH_TOKEN=...                 # GitHub API token for workflow validator
+KLAUDIUSH_LOG_FILE=/tmp/k.log  # Custom log file path (overrides XDG)
+XDG_CONFIG_HOME=~/.config    # XDG config base (global config lives here)
+XDG_DATA_HOME=~/.local/share # XDG data base (state, crash dumps, plugins)
+XDG_STATE_HOME=~/.local/state  # XDG state base (logs, audit trail)`
 		},
 		valueTypes: {
 			lang: 'bash',
@@ -837,7 +841,8 @@ klaudiush doctor --fix
 # Check specific category
 klaudiush doctor --category config
 klaudiush doctor --category hook
-klaudiush doctor --category backup`
+klaudiush doctor --category backup
+klaudiush doctor --category xdg      # XDG directory layout and migration status`
 		},
 		debugConfig: {
 			lang: 'bash',
@@ -869,8 +874,11 @@ klaudiush --debug --hook-type PreToolUse
 # Enable trace logging (verbose)
 klaudiush --trace --hook-type PreToolUse
 
-# View logs
-tail -f ~/.claude/hooks/dispatcher.log`
+# View logs (default XDG path)
+tail -f ~/.local/state/klaudiush/dispatcher.log
+
+# Or use a custom log path
+KLAUDIUSH_LOG_FILE=/tmp/klaudiush.log klaudiush --debug --hook-type PreToolUse`
 		},
 		hookCheck: {
 			lang: 'bash',
@@ -945,7 +953,7 @@ use_gitleaks = true    # Optional: use gitleaks for extra coverage`
 			code: `[[plugins.plugins]]
 name = "my-plugin"
 type = "exec"
-path = "~/.klaudiush/plugins/my-plugin.sh"
+path = "~/.local/share/klaudiush/plugins/my-plugin.sh"
 timeout = "5s"    # Execution timeout
 
 [plugins.plugins.predicate]
@@ -1079,6 +1087,40 @@ klaudiush update
 
 # Update to specific version
 klaudiush update --to v1.20.0`
+		},
+		xdgPathMapping: {
+			lang: 'text',
+			code: `Old path                              New path (XDG)
+─────────────────────────────────────────────────────────────────────────────
+~/.klaudiush/config.toml              $XDG_CONFIG_HOME/klaudiush/config.toml
+~/.claude/hooks/dispatcher.log        $XDG_STATE_HOME/klaudiush/dispatcher.log
+~/.klaudiush/exceptions/state.json    $XDG_DATA_HOME/klaudiush/exceptions/state.json
+~/.klaudiush/exception_audit.jsonl    $XDG_STATE_HOME/klaudiush/exception_audit.jsonl
+~/.klaudiush/crash_dumps/             $XDG_DATA_HOME/klaudiush/crash_dumps/
+~/.klaudiush/patterns/                $XDG_DATA_HOME/klaudiush/patterns/
+~/.klaudiush/.backups/                $XDG_DATA_HOME/klaudiush/backups/
+~/.klaudiush/plugins/                 $XDG_DATA_HOME/klaudiush/plugins/`
+		},
+		xdgDefaults: {
+			lang: 'bash',
+			code: `# Default XDG locations (when env vars are not set)
+# $XDG_CONFIG_HOME = ~/.config
+# $XDG_DATA_HOME   = ~/.local/share
+# $XDG_STATE_HOME  = ~/.local/state
+
+# So the global config defaults to:
+~/.config/klaudiush/config.toml
+
+# Logs default to:
+~/.local/state/klaudiush/dispatcher.log`
+		},
+		xdgDoctor: {
+			lang: 'bash',
+			code: `# Check XDG migration status and directory layout
+klaudiush doctor --category xdg
+
+# Auto-fix: migrate remaining files and create missing directories
+klaudiush doctor --fix --category xdg`
 		}
 	}
 };

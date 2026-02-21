@@ -21,8 +21,9 @@
 	<h3 class="text-lg font-medium">What happens when klaudiush crashes?</h3>
 	<p class="text-muted-foreground">
 		klaudiush has automatic panic recovery. If it crashes, it writes a crash dump to
-		<code>~/.klaudiush/crash_dumps/</code>, exits with code 3, and Claude Code allows the
-		operation through. Your workflow is never blocked by a klaudiush crash.
+		<code>$XDG_DATA_HOME/klaudiush/crash_dumps/</code> (default
+		<code>~/.local/share/klaudiush/crash_dumps/</code>), exits with code 3, and Claude
+		Code allows the operation through. Your workflow is never blocked by a klaudiush crash.
 	</p>
 
 	<h3 class="text-lg font-medium">How fast is klaudiush?</h3>
@@ -35,8 +36,9 @@
 
 	<h3 class="text-lg font-medium">What's the difference between global and project config?</h3>
 	<p class="text-muted-foreground">
-		Global config (<code>~/.klaudiush/config.toml</code>) applies to all projects - use it
-		for your personal preferences. Project config (<code>.klaudiush/config.toml</code>)
+		Global config (<code>$XDG_CONFIG_HOME/klaudiush/config.toml</code>, default
+		<code>~/.config/klaudiush/config.toml</code>) applies to all projects - use it for
+		your personal preferences. Project config (<code>.klaudiush/config.toml</code>)
 		applies to one repository and overrides global settings - use it for team standards.
 	</p>
 </section>
@@ -103,8 +105,11 @@
 
 	<h3 class="text-lg font-medium">Where are logs and state files stored?</h3>
 	<p class="text-muted-foreground">
-		Logs go to <code>~/.claude/hooks/dispatcher.log</code>. Exception audit logs are at
-		<code>~/.klaudiush/exception_audit.jsonl</code>.
+		Logs go to <code>$XDG_STATE_HOME/klaudiush/dispatcher.log</code> (default
+		<code>~/.local/state/klaudiush/dispatcher.log</code>). Override with the
+		<code>KLAUDIUSH_LOG_FILE</code> environment variable. Exception audit logs are at
+		<code>$XDG_STATE_HOME/klaudiush/exception_audit.jsonl</code>. The old symlink at
+		<code>~/.claude/hooks/dispatcher.log</code> still works after migration.
 	</p>
 </section>
 

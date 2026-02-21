@@ -61,7 +61,7 @@
 				</tr>
 			</thead>
 			<tbody class="text-muted-foreground">
-				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>--global, -g</code></td><td class="py-2">Create global config at ~/.klaudiush/config.toml</td></tr>
+				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>--global, -g</code></td><td class="py-2">Create global config at $XDG_CONFIG_HOME/klaudiush/config.toml</td></tr>
 				<tr class="border-b border-border/50"><td class="py-2 pr-4"><code>--force, -f</code></td><td class="py-2">Overwrite existing config (creates backup first)</td></tr>
 				<tr><td class="py-2 pr-4"><code>--no-tui</code></td><td class="py-2">Non-interactive mode with defaults</td></tr>
 			</tbody>
