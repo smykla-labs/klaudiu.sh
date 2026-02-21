@@ -82,7 +82,7 @@
 		const phase = rand(cs + 6) * Math.PI * 2;
 
 		const linesInCluster = 100 + Math.floor(rand(cs + 7) * 20);
-		const startSpacing = 36; // wider at the top
+		const startSpacing = 54; // wider at the top
 		const endSpacing = 4.5; // converging at the bottom
 
 		for (let i = 0; i < linesInCluster; i++) {
