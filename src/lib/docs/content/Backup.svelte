@@ -1,12 +1,49 @@
 <script lang="ts">
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import Callout from '$lib/components/Callout.svelte';
+	import FileTree, { type TreeNode } from '$lib/components/FileTree.svelte';
 
 	interface Props {
 		codeSnippets: Record<string, string>;
 	}
 
 	let { codeSnippets }: Props = $props();
+
+	const storageTree: TreeNode[] = [
+		{
+			name: 'backups/',
+			comment: '~/.local/share/klaudiush/backups/',
+			children: [
+				{
+					name: 'global/',
+					children: [
+						{
+							name: 'snapshots/',
+							children: [
+								{ name: '001_20250102_150405.full.toml' },
+								{ name: '002_20250102_160000.full.toml' }
+							]
+						},
+						{ name: 'metadata.json' }
+					]
+				},
+				{
+					name: 'projects/',
+					children: [
+						{
+							name: 'Users_bart_project1/',
+							children: [
+								{ name: 'snapshots/' },
+								{ name: 'metadata.json' }
+							]
+						}
+					]
+				},
+				{ name: 'audit.jsonl' },
+				{ name: '.retention' }
+			]
+		}
+	];
 </script>
 
 <section id="overview" class="space-y-3">
@@ -44,7 +81,7 @@
 		All backups live in a centralized directory. Global config and per-project configs are
 		separated into their own snapshot directories.
 	</p>
-	<CodeBlock html={codeSnippets.storageLayout} />
+	<FileTree nodes={storageTree} />
 	<p class="text-muted-foreground">
 		Each snapshot is a complete copy of the config file (full snapshots). A SHA256 checksum is stored
 		alongside the content for integrity validation on restore.

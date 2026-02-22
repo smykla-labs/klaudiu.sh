@@ -188,21 +188,6 @@ klaudiush backup restore abc123def456
 # Force restore without backup
 klaudiush backup restore abc123def456 --force`
 		},
-		storageLayout: {
-			lang: 'text',
-			code: `$XDG_DATA_HOME/klaudiush/backups/       # default: ~/.local/share/klaudiush/backups/
-\u251c\u2500\u2500 global/
-\u2502   \u251c\u2500\u2500 snapshots/
-\u2502   \u2502   \u251c\u2500\u2500 001_20250102_150405.full.toml
-\u2502   \u2502   \u2514\u2500\u2500 002_20250102_160000.full.toml
-\u2502   \u2514\u2500\u2500 metadata.json
-\u251c\u2500\u2500 projects/
-\u2502   \u2514\u2500\u2500 Users_bart_project1/
-\u2502       \u251c\u2500\u2500 snapshots/
-\u2502       \u2514\u2500\u2500 metadata.json
-\u251c\u2500\u2500 audit.jsonl
-\u2514\u2500\u2500 .retention`
-		},
 		retention: {
 			lang: 'toml',
 			code: `[backup]
