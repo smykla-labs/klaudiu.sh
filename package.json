@@ -52,6 +52,6 @@
   "dependencies": {
     "marked": "^17.0.3",
     "marked-shiki": "^1.2.1",
-    "shiki": "^3.22.0"
+    "shiki": "^4.0.0"
   }
 }
