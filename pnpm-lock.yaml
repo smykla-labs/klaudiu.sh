@@ -76,8 +76,8 @@ importers:
         specifier: 30.0.1
         version: 30.0.1
       mdsvex:
-        specifier: 0.12.6
-        version: 0.12.6(svelte@5.55.7(@typescript-eslint/types@8.67.0))
+        specifier: 0.12.8
+        version: 0.12.8(svelte@5.55.7(@typescript-eslint/types@8.67.0))
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -1526,8 +1526,8 @@ packages:
   mdn-data@2.27.1:
     resolution: {integrity: sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==}
 
-  mdsvex@0.12.6:
-    resolution: {integrity: sha512-pupx2gzWh3hDtm/iDW4WuCpljmyHbHi34r7ktOqpPGvyiM4MyfNgdJ3qMizXdgCErmvYC9Nn/qyjePy+4ss9Wg==}
+  mdsvex@0.12.8:
+    resolution: {integrity: sha512-v2sbRA9QWf0tpYWfREI5Kq7OqqrqoUzfmMKbgdOoWGfPDLc1JYU4EgDDF0N9WFhmjFW5agKrYwo/mDVutBKWKw==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
 
@@ -2673,7 +2673,7 @@ snapshots:
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/node@25.3.0':
     dependencies:
@@ -3369,7 +3369,7 @@ snapshots:
 
   mdn-data@2.27.1: {}
 
-  mdsvex@0.12.6(svelte@5.55.7(@typescript-eslint/types@8.67.0)):
+  mdsvex@0.12.8(svelte@5.55.7(@typescript-eslint/types@8.67.0)):
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 2.0.11
