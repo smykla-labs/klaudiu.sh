@@ -11,9 +11,9 @@
 		Settings,
 		Terminal,
 		Zap,
-		ArrowRight,
-		Github
+		ArrowRight
 	} from '@lucide/svelte';
+	import GithubIcon from '$lib/components/GithubIcon.svelte';
 
 	let { data } = $props();
 </script>
@@ -40,7 +40,7 @@
 					variant="outline"
 					href={siteConfig.github}
 					target="_blank"
-					rel="noopener noreferrer"><Github class="h-4 w-4" /> GitHub</Button
+					rel="noopener noreferrer"><GithubIcon class="h-4 w-4" /> GitHub</Button
 				>
 			</div>
 		</div>
