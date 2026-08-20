@@ -22,10 +22,10 @@ importers:
         specifier: 10.0.1
         version: 10.0.1(eslint@10.8.1(jiti@2.6.1))
       '@internationalized/date':
-        specifier: ^3.11.0
+        specifier: 3.11.0
         version: 3.11.0
       '@lucide/svelte':
-        specifier: ^0.577.0
+        specifier: 0.577.0
         version: 0.577.0(svelte@5.55.7(@typescript-eslint/types@8.67.0))
       '@playwright/test':
         specifier: ^1.58.2
@@ -55,7 +55,7 @@ importers:
         specifier: ^5.3.1
         version: 5.3.1(svelte@5.55.7(@typescript-eslint/types@8.67.0))(vite@7.3.5(@types/node@25.3.0)(jiti@2.6.1)(lightningcss@1.31.1))(vitest@4.0.18(@types/node@25.3.0)(jiti@2.6.1)(jsdom@30.0.1)(lightningcss@1.31.1))
       '@types/node':
-        specifier: ^25.3.0
+        specifier: 25.3.0
         version: 25.3.0
       bits-ui:
         specifier: 2.16.1
@@ -70,19 +70,19 @@ importers:
         specifier: 3.23.0
         version: 3.23.0(eslint@10.8.1(jiti@2.6.1))(svelte@5.55.7(@typescript-eslint/types@8.67.0))
       globals:
-        specifier: ^17.3.0
+        specifier: 17.3.0
         version: 17.3.0
       jsdom:
         specifier: ^30.0.0
         version: 30.0.1
       mdsvex:
-        specifier: ^0.12.6
+        specifier: 0.12.6
         version: 0.12.6(svelte@5.55.7(@typescript-eslint/types@8.67.0))
       prettier:
         specifier: 3.9.6
         version: 3.9.6
       prettier-plugin-svelte:
-        specifier: ^4.0.0
+        specifier: 4.1.1
         version: 4.1.1(prettier@3.9.6)(svelte@5.55.7(@typescript-eslint/types@8.67.0))
       svelte:
         specifier: ^5.53.0
@@ -100,13 +100,13 @@ importers:
         specifier: 4.2.0
         version: 4.2.0
       typescript:
-        specifier: ^5.9.3
+        specifier: 5.9.3
         version: 5.9.3
       typescript-eslint:
         specifier: 8.67.0
         version: 8.67.0(eslint@10.8.1(jiti@2.6.1))(typescript@5.9.3)
       vite:
-        specifier: ^7.3.5
+        specifier: 7.3.5
         version: 7.3.5(@types/node@25.3.0)(jiti@2.6.1)(lightningcss@1.31.1)
       vitest:
         specifier: ^4.0.18
@@ -2918,7 +2918,7 @@ snapshots:
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/node@25.3.0':
     dependencies:
