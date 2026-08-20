@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config';
-	import { Github } from '@lucide/svelte';
+	import GithubIcon from './GithubIcon.svelte';
 	import { Separator } from '$lib/components/ui/separator';
 </script>
 
@@ -20,7 +20,7 @@
 				rel="noopener noreferrer"
 				class="text-muted-foreground hover:text-foreground"
 			>
-				<Github class="h-5 w-5" />
+				<GithubIcon class="h-5 w-5" />
 			</a>
 		</div>
 	</div>
